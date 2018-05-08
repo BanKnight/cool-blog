@@ -15,12 +15,14 @@
   "dependencies": {
     "handlebars": "^4.0.11",
     "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
     "koa-compose": "^4.0.0",
     "koa-compress": "^3.0.0",
     "koa-handle-error": "0.0.5",
     "koa-router": "^7.4.0",
     "koa-static-cache": "^5.1.2",
     "koa-views": "^6.1.4",
+    "moment": "^2.22.1",
     "mongodb": "^3.0.7",
     "sqlite3": "^4.0.0"
   }

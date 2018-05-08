@@ -21,7 +21,7 @@ routers.get("/posts/:page",cache_router,async(ctx,next)=>
 
 routers.get("/post/:id",cache_router,async(ctx,next)=>
 {
-    const post = await md_posts.get_post(ctx.params.id)
+    const post = await md_posts.get_post(parseInt(ctx.params.id))
 
     if(post == null)
     {

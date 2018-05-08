@@ -11,5 +11,5 @@ server.modules.db = require("./db")
 
 server.modules.posts = require("./posts")
 server.modules.comments = new_module()
-server.modules.cache = new_module()
+server.modules.cache = require("./cache")
 server.modules.static = new_module()

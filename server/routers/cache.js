@@ -7,7 +7,7 @@ const md_cache = server.modules.cache
 const cacher = async(ctx,next)=>
 {
     const cache = md_cache.get(ctx.path)
-    if(cache)
+    if(cache && cache.real)
     {
         ctx.body = cache.real
         console.log(`fetch from cache ${ctx.path}`)

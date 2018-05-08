@@ -1,10 +1,10 @@
 # coolblog
 a super cool blog
 
-## 特性
+## fetures
 + nodejs
-+ 评论
-+ 搜索
++ comments
++ search
 + seo
 
 ## routers
@@ -29,7 +29,7 @@ routers.post("/admin/login",login_router,front_end.on_admin_login_page)
 routers.post("/admin/regist",login_router,front_end.on_admin_regist_page)
 //---------------------------------------------
 routers.get("/admin/posts",login_router,front_end.on_admin_posts_page)
-routers.get("/admn/posts/:id",login_router,front_end.on_admin_read_post_page)
+routers.get("/admn/post/:id",login_router,front_end.on_admin_read_post_page)
 routers.put("/admn/posts/:id",login_router,front_end.on_admin_new_post_page)
 routers.post("/admn/posts/:id",login_router,front_end.on_admin_edit_post_page)
 routers.del("/admn/posts/:id",login_router,front_end.on_admin_del_post_page)
