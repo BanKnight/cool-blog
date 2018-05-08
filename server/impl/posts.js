@@ -6,27 +6,47 @@ const server = require("../head")
 const me = server.modules.posts
 const data = me.data
 
+const md_db = server.modules.db
+
 me.start = async function()
 {
+
     const posts = data.posts
     const posts_sorted = data.posts_sorted     //最新的在前面
 
-    for(var i = 100;i >= 98;--i)
-    {
+    const all_posts = await md_db.load("posts",{})
+
+    all_posts.forEach(db_post => {
+        
         const post = {}
 
-        post.id = i
-        post.url = `/post/${i}`
-        post.title = `标题${i}`
-        post.summary = `概要${i}`
-        post.content = `内容${i}`
+        post.id = db_post._id
+        post.create = db_post.create
+        post.url = `/post/${post.id}`
+        post.title = db_post.title
+        post.summary = db_post.summary
+        post.content = db_post.content
 
         posts[post.id] = post
         posts_sorted.push(post)
-    }
+    })
+
+    me.sort_posts()
 
     data.last_id_time = parseInt(moment().format("YYYYMMDDHHmmss"))
     data.id_helper = 0
+
+    console.log(`has already load ${all_posts.length} posts`)
+}
+
+function compare(first,second)
+{
+    return second.id - first.id
+}
+
+me.sort_posts = function()
+{
+    data.posts_sorted.sort(compare)
 }
 
 me.get_posts_by_page = function(page_no)
@@ -42,7 +62,7 @@ me.get_posts_by_page = function(page_no)
         return []
     }
 
-    let total_page = total_count / max_number_in_page
+    let total_page = Math.floor(total_count / max_number_in_page)
     let last_page_count = total_count % max_number_in_page
     
     if(last_page_count > 0)
@@ -115,5 +135,42 @@ me.new_post = async(post)=>
     data.posts[post.id] = post
     data.posts_sorted.unshift(post)
 
+    const db_post = {
+        _id:post.id,
+        create : post.create,
+        title : post.title,
+        summary : post.summary,
+        content : post.content,
+    }
+    
+    md_db.upsert("posts",{_id:post.id},db_post)
+
     return post
+}
+
+me.del_post = async(id)=>
+{
+    const is_exists = delete data.posts[id]
+
+    if(!is_exists)
+    {
+        return false
+    }
+
+    for(var i = 0,len = data.posts_sorted.length;i < len;++i)
+    {
+        const post = data.posts_sorted[i]
+        if(post.id != id)
+        {
+            continue
+        }
+
+        data.posts_sorted.splice(i,1)
+
+        await md_db.remove("posts",{_id:id})
+
+        return true
+    }
+
+    return false
 }
