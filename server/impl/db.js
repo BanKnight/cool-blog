@@ -1,6 +1,5 @@
 const fs = require("fs")
 const path = require("path")
-const sqlite = require("sqlite3")
 const mongo = require("mongodb")
 const assert = require("assert")
 

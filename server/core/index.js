@@ -1,4 +1,3 @@
-const views = require("koa-views")
 const path = require("path")
 
 const config = require("../../config")

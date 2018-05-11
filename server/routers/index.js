@@ -4,10 +4,11 @@ const routers = server.routers
 
 //------------------------------------
 
-require("./error")
+//require("./error")
 require("./log")
 
 require("./template")
+require("./static")
 
 require("./home")
 require("./posts")

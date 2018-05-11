@@ -1,5 +1,6 @@
-const views = require("koa-views")
 const path = require("path")
+const render = require("koa-art-template")
+const template = render.template
 
 const config = require("../../config")
 const server = require("../head")
@@ -12,4 +13,8 @@ views_path = path.resolve(views_path)
 
 console.log(`views path is ${views_path}`)
 
-app.use(views(views_path,{extension: 'hbs', map: {hbs: 'handlebars'}}))
+render(app, {
+    root: views_path,
+    extname: '.art',
+    debug: process.env.NODE_ENV !== 'production'
+  });
