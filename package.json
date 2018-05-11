@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "art-template": "^4.12.2",
+    "highlight.js": "^9.12.0",
     "koa": "^2.5.1",
     "koa-art-template": "^1.1.1",
     "koa-bodyparser": "^4.2.0",
@@ -24,7 +25,8 @@
     "koa-static-cache": "^5.1.2",
     "koa-views": "^6.1.4",
     "moment": "^2.22.1",
-    "mongodb": "^3.0.8"
+    "mongodb": "^3.0.8",
+    "remarkable": "^1.7.1"
   },
   "devDependencies": {}
 }

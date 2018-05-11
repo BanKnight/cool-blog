@@ -12,6 +12,7 @@ const app = server.app
 let cwd = process.cwd()
 let content = path.isAbsolute(config.content)?config.content : path.join(cwd,config.content)
 let theme = path.join(content,"themes",config.theme ? config.theme :"cool")
+let public = path.join(theme,"public")
 
-app.use(static(theme,{prefix:"/public/",buffer:true,gzip:true,dynamic:true,files:files}))
+app.use(static(public,{prefix:"/public/",buffer:true,gzip:true,dynamic:true,files:files}))
 

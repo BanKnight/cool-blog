@@ -10,6 +10,6 @@
 {{block 'body'}}
     <h1>{{post.title}}</h1>
     <div class="markdown-body">
-        {{post.content}}
+        {{@post.content | md}}
     </div>
 {{/block}}
