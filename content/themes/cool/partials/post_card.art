@@ -1,4 +1,10 @@
-<a href="{{url}}">
-    <h1>{{title}}</h1>
-    <p>{{summary}}</p>
+
+<a href="{{url}}}">
+    <div class="layui-card layui-text">
+        <div class="layui-card-header"><h1>{{title}}</h1></div>
+        <div class="layui-card-body">
+            <h2>{{summary}}<h2>
+        </div>
+    </div>
 </a>
+<br>

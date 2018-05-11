@@ -11,13 +11,23 @@
     {{/block}}
 </head>
 
-<body>
-    {{block 'body'}}
-        My Site body
-    {{/block}}
+<body class="layui-bg-gray">
+    <div class="layui-container">
+        <div class="layui-row">
+            <ul class="layui-nav layui-bg-cyan" lay-filter="">
+                <li class="layui-nav-item"><a href="/">首頁</a></li>
+            </ul>
+        </div>
 
-    {{block 'footer'}}
-    {{/block}}
-
+        <div class="layui-row">
+            {{block 'body'}}
+                My Site body
+            {{/block}}
+        </div>
+        <div class="layui-row">
+            {{block 'footer'}}
+            {{/block}}
+        </div>
+    </div>
 </body>
 </html>

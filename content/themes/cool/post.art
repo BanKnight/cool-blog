@@ -1,5 +1,9 @@
 {{extend './layouts/default.art'}}
 
+{{block 'title'}}
+    {{title}}:{{post.title}}
+{{/block}}
+
 {{block 'head'}}
     
     <link href="https://cdn.bootcss.com/github-markdown-css/2.8.0/github-markdown.min.css" rel="stylesheet">
@@ -8,8 +12,10 @@
 {{/block`}}
 
 {{block 'body'}}
-    <h1>{{post.title}}</h1>
-    <div class="markdown-body">
-        {{@post.content | md}}
+    <div class="layui-card layui-text">
+        <div class="layui-card-header"><h1>{{post.title}}</h1></div>
+        <div class="layui-card-body markdown-body">
+            {{@post.content | md}}
+        </div>
     </div>
 {{/block}}
