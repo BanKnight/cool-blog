@@ -9,9 +9,6 @@ me.get_node_from_path = function(path)
     path = path.substr(1)
     const array = path.split('/')
 
-    console.log(`cal cache:${path},${array.length}`)
-    console.dir(array)
-
     let parent = data
     let curr = data
 

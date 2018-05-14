@@ -1,7 +1,0 @@
-{{extend './layouts/default.art'}}
-
-{{block 'body'}}
-    {{each posts post}}
-        {{include './partials/post_card.art' post}}
-    {{/each}}
-{{/block}}

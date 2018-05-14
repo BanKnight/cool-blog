@@ -8,7 +8,11 @@ routers.get("/",cache_router,async(ctx,next)=>
 {
     console.log("handle home page")
 
-    const posts = md_posts.get_posts_by_page()
+    const info = md_posts.get_posts_by_page()
 
-    await ctx.render("home",{title : "Ban's blog",posts: posts})
+    info.title = "Ban's blog"
+
+    console.log(`curr:${info.curr_page},max:${info.max_page},count:${md_posts.data.posts_sorted.length}`)
+
+    await ctx.render("home",info)
 })

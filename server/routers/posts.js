@@ -14,9 +14,9 @@ routers.get("/posts",cache_router,async(ctx,next)=>
 
 routers.get("/posts/:page",cache_router,async(ctx,next)=>
 {
-    const posts = md_posts.get_posts_by_page(parseInt(ctx.params.page))
+    const info = md_posts.get_posts_by_page(parseInt(ctx.params.page))
 
-    await ctx.render("posts",{title : "BanSky's blog",posts: posts})
+    await ctx.render("posts",info)
 })
 
 routers.get("/post/:id",cache_router,async(ctx,next)=>
@@ -29,8 +29,7 @@ routers.get("/post/:id",cache_router,async(ctx,next)=>
         return
     }
 
-    console.log(`try to load a post,id:${ctx.params.id}`)
-    console.dir(post)
+    console.log(`try to get a post,id:${post.id},url:${post.url},title:${post.title}`)
 
     await ctx.render("post",{title : "Ban's blog",post: post})
 })

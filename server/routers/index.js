@@ -6,6 +6,7 @@ const routers = server.routers
 
 //require("./error")
 require("./log")
+require("./state")
 
 require("./template")
 require("./static")

@@ -1,0 +1,27 @@
+{{extend './layouts/default.art'}}
+
+{{block 'body'}}
+    {{each page post}}
+        {{include './partials/post_card.art' post}}
+    {{/each}}
+
+    {{if max_page > 1}}
+
+        {{set older = curr_page + 1}}
+        {{set newer = curr_page - 1}}
+
+        <nav class="page-navigator">
+            {{if newer>=1}}
+                <a class="extend prev" rel="next" href="/posts/{{newer}}/">
+                    新文章
+                </a>
+            {{/if}}
+
+            {{if older<=max_page}}
+                <a class="extend next" rel="next" href="/posts/{{older}}/">
+                    旧文章
+                </a>
+            {{/if}}
+        </nav>
+    {{/if}}
+{{/block}}

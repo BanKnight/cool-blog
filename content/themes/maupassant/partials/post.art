@@ -1,0 +1,21 @@
+<div class="post">
+    <h1 class="post-title">
+        {{title}}
+    </h1>
+    <div class="post-meta">
+        {{create | moment 'YYYY-MM-DD'}}
+    </div>
+    </a>
+    <div class="post-content markdown-body">
+        {{@content | md}}
+    </div>
+    
+    <script src="https://cdn.bootcss.com/react/16.0.0/umd/react.production.min.js">
+    </script>
+    <script src="https://cdn.bootcss.com/react-dom/16.0.0/umd/react-dom.production.min.js">
+    </script>
+    <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/blockies-identicon@0.1.0/blockies.min.js">
+    </script>
+</div>

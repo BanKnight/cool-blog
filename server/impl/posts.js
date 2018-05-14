@@ -29,6 +29,8 @@ me.start = async function()
 
         posts[post.id] = post
         posts_sorted.push(post)
+
+        console.log(`load a post,id:${post.id},url:${post.url},title:${post.title}`)
     })
 
     me.sort_posts()
@@ -53,13 +55,15 @@ me.get_posts_by_page = function(page_no)
 {
     page_no = page_no || 1
 
+    const page = []
+
     const posts_sorted = data.posts_sorted
     const total_count = posts_sorted.length
     const max_number_in_page = 5
 
     if(total_count == 0)
     {
-        return []
+        return {curr_page:1,max_page:1,page:page}
     }
 
     let total_page = Math.floor(total_count / max_number_in_page)
@@ -77,7 +81,6 @@ me.get_posts_by_page = function(page_no)
     page_no = Math.min(page_no,total_page)
     page_no = Math.max(page_no,1)
 
-    let page = []
     let start_index = (page_no - 1) * max_number_in_page
     let stop_index = start_index + max_number_in_page
 
@@ -93,7 +96,7 @@ me.get_posts_by_page = function(page_no)
 
     console.log(`start_index:${start_index} stop_index:${stop_index}`)
 
-    return page
+    return {curr_page:page_no,max_page:total_page,page:page}
 }
 
 me.get_post = async function(id)
@@ -142,6 +145,8 @@ me.new_post = async(post)=>
         summary : post.summary,
         content : post.content,
     }
+
+    console.log(`new a post,id:${post.id},url:${post.url},title:${post.title}`)
     
     md_db.upsert("posts",{_id:post.id},db_post)
 
