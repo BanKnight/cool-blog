@@ -1,0 +1,7 @@
+{{extend './layouts/default.art'}}
+
+{{block 'body'}}
+
+    {{include './partials/post.art' post}}
+
+{{/block}}

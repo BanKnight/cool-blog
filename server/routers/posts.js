@@ -31,5 +31,5 @@ routers.get("/post/:id",cache_router,async(ctx,next)=>
 
     console.log(`try to get a post,id:${post.id},url:${post.url},title:${post.title}`)
 
-    await ctx.render("post",{title : "Ban's blog",post: post})
+    await ctx.render("post",{post: post})
 })

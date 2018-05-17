@@ -11,6 +11,7 @@ require("./state")
 require("./template")
 require("./static")
 
+require("./body_parser")
 require("./home")
 require("./posts")
 require("./comments")

@@ -179,3 +179,16 @@ me.del_post = async(id)=>
 
     return false
 }
+
+me.upd_post = async(post)=>
+{
+    const db_post = {
+        title : post.title,
+        summary : post.summary,
+        content : post.content,
+    }
+
+    console.log(`upd a post,id:${post.id},url:${post.url},title:${post.title}`)
+    
+    md_db.upsert("posts",{_id:post.id},db_post)
+}

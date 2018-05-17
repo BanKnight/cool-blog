@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"
+		name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+
+    <title> cool-blog </title>
+
+    <link rel="stylesheet" href="https:///cdn.bootcss.com/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https:///cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    <link rel="stylesheet" href="https:///cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css">
+    <link rel="stylesheet" href="https:///cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdn.bootcss.com/github-markdown-css/2.8.0/github-markdown.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" rel="stylesheet">
+    
+    <script src="https:///cdn.bootcss.com/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https:///cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"async>
+    </script>
+
+</head>
+
+<body>
+
+    <div class="pure-g" style="height:30px">
+    </div>
+
+    <div class="pure-g" style="letter-spacing:0">
+        <form class="pure-form pure-form-aligned" action="/admin" method="post">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="name">邮箱</label>
+                    <input id="name" name="name" type="text" placeholder="邮箱">
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="password">密码</label>
+                    <input id="password" name="password" type="password" placeholder="密码">
+                </div>
+                <div class="pure-controls">
+                    <button type="submit" class="pure-button pure-button-primary">登陸</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>
+

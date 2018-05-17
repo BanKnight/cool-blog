@@ -1,3 +1,6 @@
-var bodyParser = require('koa-bodyparser');
+var bodyParser = require('koa-bodyparser')
 
-module.exports = bodyParser()
+const server = require("../head")
+const app = server.app
+
+app.use(bodyParser())

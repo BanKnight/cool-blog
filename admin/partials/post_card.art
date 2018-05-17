@@ -1,0 +1,13 @@
+<div class="post">
+    <h1 class="post-title">
+        <a href="/admin/post/{{id}}">
+            {{title}}
+        </a>
+    </h1>
+    <div class="post-meta">
+        {{create | moment 'YYYY-MM-DD'}}
+    </div>
+    <div class="post-content">
+        {{summary}}
+    </div>
+</div>

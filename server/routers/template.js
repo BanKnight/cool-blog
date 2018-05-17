@@ -4,7 +4,7 @@ const Remarkable = require('remarkable')
 const hljs  = require('highlight.js') // https://highlightjs.org/
 const moment = require("moment")
 
-const render = require("koa-art-template")
+const render = require("../../kernel/views")
 const template = render.template
 
 const config = require("../../config")
@@ -44,14 +44,13 @@ const app = server.app
 }
 
 {
-    let views_path = path.join(config.content,"themes",config.theme || "cool")
-
-    views_path = path.resolve(views_path)
+    let views_path = path.resolve(config.content,"themes",config.theme || "cool")
+    let admin_path = path.resolve("admin")
 
     console.log(`views path is ${views_path}`)
 
     render(app, {
-        root: views_path,
+        pathes: [views_path,admin_path],
         extname: '.art',
         debug: process.env.NODE_ENV !== 'production'
     })
