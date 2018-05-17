@@ -30,11 +30,7 @@ exports = module.exports = function (app, settings = {}) {
         {
             var one_path = settings.pathes[i]
 
-            var full_path = path.resolve(one_path,filename)
-            if(!path.extname(full_path))
-            {
-                full_path = full_path + ".art"
-            }
+            var full_path = path.resolve(one_path,filename) + ".art"
 
             //console.log(`finding ....${full_path},${one_path},${filename}`)
 

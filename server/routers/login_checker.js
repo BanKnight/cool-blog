@@ -15,12 +15,26 @@ let cookie = {
     secure: '',
     sameSite: '',
     signed: '',
-  
   }
+
+let store = {}
+
+store.get = function(id)
+{
+    return store[id]
+}
+store.set = function(id,val)
+{
+    store[id] = val
+}
+store.del = function(id)
+{
+    delete store[id]
+}
 
 const session_router = session({
     key: 'SESSION_ID',
-    //store: md_users,
+    store: store,
     cookie: cookie
   })
 

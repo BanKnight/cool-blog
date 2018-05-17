@@ -20,7 +20,7 @@ routers.get("/admin",login_checker.find,async(ctx,next)=>
         return
     }
 
-    await ctx.render("admin_login",{})
+    await ctx.render("admin.login",{})
 })
 
 routers.post("/admin",login_checker.find,async(ctx,next)=>
@@ -32,6 +32,8 @@ routers.post("/admin",login_checker.find,async(ctx,next)=>
     }
 
     let params = ctx.request.body
+
+    console.dir(params)
 
     if(params.name == config.user.name && params.password == config.user.pass)
     {
@@ -45,9 +47,16 @@ routers.post("/admin",login_checker.find,async(ctx,next)=>
 
 routers.get("/admin/posts",login_checker.must,async(ctx,next)=>
 {
+    const info = md_posts.get_posts_by_page()
+
+    await ctx.render("admin.posts",info)
+})
+
+routers.get("/admin/posts/:page",login_checker.must,async(ctx,next)=>
+{
     const info = md_posts.get_posts_by_page(parseInt(ctx.params.page))
 
-    await ctx.render("admin_posts",info)
+    await ctx.render("admin.posts",info)
 })
 /*
     new post
@@ -76,7 +85,7 @@ routers.get("/admin/post/:id",login_checker.must,async(ctx,next)=>
 
     //console.log(`try to get a post,id:${post.id},url:${post.url},title:${post.title}`)
 
-    await ctx.render("admin_post",{post: post})
+    await ctx.render("admin.post",{post: post})
 })
 
 routers.post("/admin/post/:id",login_checker.must,async(ctx,next)=>
@@ -93,6 +102,6 @@ routers.post("/admin/post/:id",login_checker.must,async(ctx,next)=>
 
     //console.log(`try to get a post,id:${post.id},url:${post.url},title:${post.title}`)
 
-    await ctx.render("admin_post",{post: post})
+    await ctx.render("admin.post",{post: post})
 })
 

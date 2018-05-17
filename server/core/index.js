@@ -27,9 +27,7 @@ server.start = async()=>
 server.on_log = async (ctx, next) => 
 {
     console.log(`Process ${ctx.req.method} ${ctx.req.url}...`);
-    console.log(`ctx info ${ctx.path} ${ctx.url} `)
-    console.dir(ctx.query)
-    
+        
     await next()
 }
 
