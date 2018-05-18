@@ -45,14 +45,14 @@ routers.post("/admin",login_checker.find,async(ctx,next)=>
 
 routers.get("/admin/posts",login_checker.must,async(ctx,next)=>
 {
-    const info = md_posts.get_posts_by_page()
+    const info = md_posts.get_posts_by_page(1,10)
 
     await ctx.render("admin.posts",info)
 })
 
 routers.get("/admin/posts/:page",login_checker.must,async(ctx,next)=>
 {
-    const info = md_posts.get_posts_by_page(parseInt(ctx.params.page))
+    const info = md_posts.get_posts_by_page(parseInt(ctx.params.page),10)
 
     await ctx.render("admin.posts",info)
 })

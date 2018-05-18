@@ -51,7 +51,7 @@ me.sort_posts = function()
     data.posts_sorted.sort(compare)
 }
 
-me.get_posts_by_page = function(page_no)
+me.get_posts_by_page = function(page_no,max_number_in_page)
 {
     page_no = page_no || 1
 
@@ -59,7 +59,8 @@ me.get_posts_by_page = function(page_no)
 
     const posts_sorted = data.posts_sorted
     const total_count = posts_sorted.length
-    const max_number_in_page = 5
+
+    max_number_in_page = max_number_in_page || 5
 
     if(total_count == 0)
     {
