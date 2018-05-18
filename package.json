@@ -4,7 +4,7 @@
   "description": "cool blog for everyone",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "cross-env NODE_ENV=development node index.js"
   },
   "keywords": [
     "blog",
@@ -29,5 +29,7 @@
     "mongodb": "^3.0.8",
     "remarkable": "^1.7.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "cross-env": "^5.1.5"
+  }
 }
