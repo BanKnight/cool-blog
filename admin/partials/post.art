@@ -38,6 +38,12 @@
 
         var mditor = Mditor.fromTextarea(document.getElementById('editor'));
 
+        mditor.on('ready', function () {
+            mditor.toolbar.items = mditor.toolbar.items.slice(12);
+
+            console.dir(mditor.toolbar.items)
+        });
+
         function summit() {
             var $ = layui.$
             var form = $("form")
@@ -54,10 +60,10 @@
                 dataType: 'json',
                 success: function (data) {
                     layer.close(index)
-                    layer.msg('提交成功', {icon: 6}); 
+                    layer.msg('提交成功', { icon: 6 });
                 },
                 error: function () {
-                    layer.msg('提交失敗', {icon: 6}); 
+                    layer.msg('提交失敗', { icon: 6 });
                 }
             })
         }
