@@ -4,7 +4,7 @@
     </legend>
     <div>
         <blockquote class="layui-elem-quote">{{summary}}</blockquote>
-        <button class="layui-btn">編輯</button>
+        <a class="layui-btn" href="/admin/post/{{id}}">編輯</a>
         <button class="layui-btn">刪除</button>
     </div>
 </div>

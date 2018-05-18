@@ -33,8 +33,6 @@ routers.post("/admin",login_checker.find,async(ctx,next)=>
 
     let params = ctx.request.body
 
-    console.dir(params)
-
     if(params.name == config.user.name && params.password == config.user.pass)
     {
         ctx.session.user_id = 1

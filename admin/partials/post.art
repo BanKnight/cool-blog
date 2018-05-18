@@ -1,12 +1,13 @@
-<div class="post">
-    <h1 class="post-title">
-        {{title}}
-    </h1>
-    <div class="post-meta">
-        {{create | moment 'YYYY-MM-DD'}}
-    </div>
-    </a>
-    <div class="post-content markdown-body">
-        {{@content}}
-    </div>
+<div class="panel">
+    <block class="editing_title title" contenteditable="true">{{title}}</block>
+
+    <textarea name="editor" id="editor">{{@content}}</textarea>
+
+    <script>
+        var mditor = Mditor.fromTextarea(document.getElementById('editor'));
+        //获取或设置编辑器的值
+        mditor.on('ready', function () {
+        });
+    </script>
+
 </div>
