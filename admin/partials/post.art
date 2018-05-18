@@ -3,13 +3,15 @@
         <div class="layui-form-item">
             <label class="layui-form-label">標題</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required="" lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input layui-form-danger" value="{{title || ''}}"/>
+                <input type="text" name="title" required="" lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input layui-form-danger"
+                    value="{{title || ''}}" />
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">url</label>
             <div class="layui-input-block">
-                <input type="text" name="id" required="" lay-verify="required" placeholder="请输入url" autocomplete="off" class="layui-input layui-form-danger" value="{{id || ''}}"/>
+                <input type="text" name="id" required="" lay-verify="required" placeholder="请输入url" autocomplete="off" class="layui-input layui-form-danger"
+                    value="{{id || ''}}" />
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
@@ -25,18 +27,24 @@
             </div>
         </div>
     </form>
-    
+
     <button class="layui-btn" id="summit" lay-submit="" lay-filter="formDemoPane" onclick="summit()">立即提交</button>
 
     <script>
+        var layer
+        layui.use('layer', function () {
+            layer = layui.layer;
+        });
+
         var mditor = Mditor.fromTextarea(document.getElementById('editor'));
-        
-        function summit()
-        {
+
+        function summit() {
             var $ = layui.$
             var form = $("form")
             var url = form.attr("action");
             var data = form.serialize();
+
+            var index = layer.load(2)
 
             $.ajax({
                 type: 'post',
@@ -45,10 +53,11 @@
                 data: data,
                 dataType: 'json',
                 success: function (data) {
-                    layer.open({type: 1, content: '传入任意的文本或html'});
+                    layer.close(index)
+                    layer.msg('提交成功', {icon: 6}); 
                 },
                 error: function () {
-                    alert("请求失败")
+                    layer.msg('提交失敗', {icon: 6}); 
                 }
             })
         }

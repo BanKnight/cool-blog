@@ -86,10 +86,9 @@ routers.post("/admin/post",login_checker.must,async(ctx,next)=>
     ctx.body = {message:"ok",id:post.id}
 
     md_cache.unset('/')
+    md_cache.unset('/post/${post.id}')
     md_cache.unset('/posts')
     md_cache.unset_under('/posts')
-    md_cache.unset_under('/post/${post.id}')
-
 })
 
 routers.get("/admin/post/:id",login_checker.must,async(ctx,next)=>
@@ -105,6 +104,19 @@ routers.get("/admin/post/:id",login_checker.must,async(ctx,next)=>
     //console.log(`try to get a post,id:${post.id},url:${post.url},title:${post.title}`)
 
     await ctx.render("admin.post",{post: post})
+})
+
+routers.del("/admin/post/:id",login_checker.must,async(ctx,next)=>
+{
+    md_posts.del_post(ctx.params.id)
+
+    ctx.body = {message:"ok",id:ctx.params.id}
+
+    md_cache.unset('/')
+    md_cache.unset('/post/${post.id}')
+    md_cache.unset('/posts')
+    md_cache.unset_under('/posts')
+
 })
 
 
