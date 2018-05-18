@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="/public/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/public/admin.style.css" media="all">
 
+    <script src="/public/layui/layui.js" charset="utf-8"></script>
+
     {{block 'head'}}
     {{/block}}
 
@@ -23,27 +25,50 @@
 
     <div class="layui-layout">
         <div class="layui-row">
-            <ul class="layui-nav layui-bg-cyan">
+            <ul class="layui-nav layui-bg-molv">
                 <li class="layui-nav-item">
                     <a href="/">主页</a>
                 </li>
-                <li class="layui-nav-item layui-this">
+                <li class="layui-nav-item" id="nav_posts">
                     <a href="/admin/posts">文章列表</a>
                 </li>
+                    <li class="layui-nav-item" id="nav_post">
+                    <a href="/admin/post">添加文章</a>
+                </li>                   
             </ul>
         </div>
+        
+        <script>
+            var navs = ["nav_posts","nav_post"]
+            function set_nav(id)
+            {
+                console.log(`set nav ${id}`)
+
+                for(var i = 0;i< navs.length;++i)
+                {
+                    var exist = navs[i]
+                    var item = document.getElementById(exist) 
+
+                    if(exist != id)
+                    {
+                        item.className="layui-nav-item"
+                    }
+                    else
+                    {
+                        item.className="layui-nav-item layui-this"
+                    }
+                }
+            }
+        </script>
         <div class="layui-row" style="padding: 1em 1em 0 1em">
             {{block 'body'}}
             {{/block}}
         </div>
     </div>
 
-    <script src="/public/layui/layui.js" charset="utf-8"></script>
-    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
     <script>
         layui.use('element', function () {
             var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-
 
         });
     </script>

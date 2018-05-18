@@ -1,6 +1,6 @@
 <div class="post">
     <h1 class="post-title">
-        <a href="{{@url}}">
+        <a href="/post/{{id}}">
             {{title}}
         </a>
     </h1>
@@ -11,7 +11,7 @@
         {{summary}}
     </div>
     <p class="readmore">
-        <a href="{{@url}}">
+        <a href="/post/{{id}}">
             阅读全文
         </a>
     </p>

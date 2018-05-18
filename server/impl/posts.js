@@ -22,7 +22,6 @@ me.start = async function()
 
         post.id = db_post._id
         post.create = db_post.create
-        post.url = `/post/${post.id}`
         post.title = db_post.title
         post.summary = db_post.summary
         post.content = db_post.content
@@ -107,33 +106,12 @@ me.get_post = async function(id)
     return posts[id]
 }
 
-me.new_id = ()=>
-{
-    var now_int = parseInt(moment().format("YYYYMMDDHHmmss"))
-
-    if(now_int != data.last_id_time)
-    {
-        data.last_id_time = now_int
-        data.id_helper = 0
-    }
-
-    data.id_helper = data.id_helper + 1
-
-    const id = data.last_id_time * 100 + data.id_helper
-
-    console.log(`id helper is:${data.last_id_time}-${data.id_helper},${id}`)
-
-    return id
-}
-
 me.new_post = async(post)=>
 {
     assert(post.title)
     assert(post.content)
     assert(post.summary)
 
-    post.id = me.new_id()
-    post.url = `/post/${post.id}`
     post.create = Date.now()
 
     data.posts[post.id] = post

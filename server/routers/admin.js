@@ -56,24 +56,45 @@ routers.get("/admin/posts/:page",login_checker.must,async(ctx,next)=>
 
     await ctx.render("admin.posts",info)
 })
+
+routers.get("/admin/post",login_checker.must,async(ctx,next)=>
+{
+    await ctx.render("admin.post",{})
+})
 /*
-    new post
+    new post or edit post
     form urlencode or json
 */
-routers.put("/admin/post",login_checker.must,async(ctx,next)=>
+routers.post("/admin/post",login_checker.must,async(ctx,next)=>
 {
-    const post = await md_posts.new_post(ctx.request.body)
+    let params = ctx.request.body
+    let post = await md_posts.get_post(params.id)
+
+    if(post == null)
+    {
+        post = await md_posts.new_post(params)
+    }
+    else
+    {
+        post.title = params.title
+        post.summary = params.summary
+        post.content = params.content
+
+        await md_posts.upd_post(post)
+    }
 
     ctx.body = {message:"ok",id:post.id}
 
     md_cache.unset('/')
     md_cache.unset('/posts')
     md_cache.unset_under('/posts')
+    md_cache.unset_under('/post/${post.id}')
+
 })
 
 routers.get("/admin/post/:id",login_checker.must,async(ctx,next)=>
 {
-    const post = await md_posts.get_post(parseInt(ctx.params.id))
+    const post = await md_posts.get_post(ctx.params.id)
 
     if(post == null)
     {
@@ -86,20 +107,4 @@ routers.get("/admin/post/:id",login_checker.must,async(ctx,next)=>
     await ctx.render("admin.post",{post: post})
 })
 
-routers.post("/admin/post/:id",login_checker.must,async(ctx,next)=>
-{
-    const post = await md_posts.get_post(parseInt(ctx.params.id))
-
-    if(post == null)
-    {
-        await ctx.throw(404)
-        return
-    }
-
-    md_post.upd_post(post)
-
-    //console.log(`try to get a post,id:${post.id},url:${post.url},title:${post.title}`)
-
-    await ctx.render("admin.post",{post: post})
-})
 

@@ -1,44 +1,45 @@
 {{extend './layouts/default.art'}}
 
 {{block 'body'}}
-            <div class="panel">
-                <button class="layui-btn">
-                    <i class="layui-icon">&#xe608;</i> 添加
-                </button>
-                <table class="layui-table">
-                    <colgroup>
-                        <col width="70">
-                        <col width="180">
-                        <col>
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th>操作</th>
-                            <th>時間</th>
-                            <th>標題</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{each page post}}
-                            {{include './partials/post_card.art' post}}
-                        {{/each}}
-                    </tbody>
-                </table>
-                {{if max_page > 1}}
-                    {{set older = curr_page + 1}}
-                    {{set newer = curr_page - 1}}
+    <script>
+        set_nav("nav_posts")
+    </script>
+    <div class="panel">
+        <table class="layui-table">
+            <colgroup>
+                <col width="70">
+                <col width="180">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>操作</th>
+                    <th>時間</th>
+                    <th>標題</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{each page post}}
+                    {{include './partials/post_card.art' post}}
+                {{/each}}
+            </tbody>
+        </table>
+        {{if max_page > 1}}
+            {{set older = curr_page + 1}}
+            {{set newer = curr_page - 1}}
 
-                        {{if newer>=1}}
-                            <a class="layui-btn layui-btn-lg" rel="next" href="/admin/posts/{{newer}}/" style="float:left">
-                                新的文章
-                            </a>
-                        {{/if}}
-                        {{if older<=max_page}}
-                            <a class="layui-btn layui-btn-lg" rel="next" href="/admin/posts/{{older}}/" style="float:right">
-                                舊的文章
-                            </a>
-                        {{/if}}
+                {{if newer>=1}}
+                    <a class="layui-btn layui-btn-lg" rel="next" href="/admin/posts/{{newer}}/" style="float:left">
+                        新的文章
+                    </a>
                 {{/if}}
-            </div>
+                {{if older<=max_page}}
+                    <a class="layui-btn layui-btn-lg" rel="next" href="/admin/posts/{{older}}/" style="float:right">
+                        舊的文章
+                        {{page_source}}
+                    </a>
+                {{/if}}
+        {{/if}}
+    </div>
 {{/block}}
 
