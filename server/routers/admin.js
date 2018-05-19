@@ -9,6 +9,7 @@ const app = server.app
 const routers = server.routers
 const md_posts = server.modules.posts
 const md_cache = server.modules.cache
+const md_basic = server.modules.basic
 
 routers.get("/admin",login_checker.find,async(ctx,next)=>
 {
@@ -117,6 +118,38 @@ routers.del("/admin/post/:id",login_checker.must,async(ctx,next)=>
     md_cache.unset('/posts')
     md_cache.unset_under('/posts')
 
+})
+
+routers.get("/admin/setting",login_checker.must,async(ctx,next)=>
+{
+    await ctx.render("admin.setting")
+})
+
+routers.post("/admin/setting",login_checker.must,async(ctx,next)=>
+{
+    let params = ctx.request.body
+    let changed = false
+
+    console.dir(params)
+
+    for(var key in params)
+    {
+        var val = params[key]
+
+        console.log(`set ${key}:${val}`)
+
+        await md_basic.set(key,val)
+
+        changed = true
+    }
+
+    ctx.body = {message:"ok"}
+
+    if(changed)
+    {
+        md_cache.unset("/")
+        md_cache.unset_under("/")
+    }
 })
 
 

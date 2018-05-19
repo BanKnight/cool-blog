@@ -36,6 +36,8 @@ me.load = async(name,cond,fields)=>
     {
         assert(data.db)
 
+        cond = cond || {}
+
         const col = data.db.collection(name)
         const ret = await col.find(cond).toArray()
 
@@ -63,7 +65,7 @@ me.upsert = async(name,cond,db_data)=>
 
         const r = await col.updateOne(cond, {$set: db_data}, {upsert: true})
     
-        assert.equal(1, r.upsertedCount)
+        //assert.equal(1, r.upsertedCount)
     }
     catch(err)
     {

@@ -7,9 +7,9 @@
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
 		<meta content="telephone=no" name="format-detection">
-		<title>{{block 'meta_title'}}{{web_name}}'s blog{{/block}}</title>
+		<title>{{block 'meta_title'}}{{web_name}}{{/block}}</title>
 
-		<meta name="description" content="{{meta_description}}}}">
+		<meta name="description" content="{{meta_description || web_description}}}}">
 
 		<link rel="stylesheet" href="/public/css/style.css">
 		<link rel="stylesheet" href="https:///cdn.bootcss.com/normalize/8.0.0/normalize.min.css">
@@ -41,7 +41,7 @@
 					</p>
 				</div>
 				<div id="nav-menu">
-					<a href="/.">
+					<a href="/">
 						<i class="fa fa-home">
 							首页
 						</i>

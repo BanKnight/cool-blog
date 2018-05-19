@@ -14,10 +14,7 @@
     <link rel="stylesheet" href="/public/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/public/admin.style.css" media="all">
 
-    <script src="/public/layui/layui.js" charset="utf-8"></script>
-
-    {{block 'head'}}
-    {{/block}}
+    <script src="/public/layui/layui.js" charset="utf-8"></script> {{block 'head'}} {{/block}}
 
 </head>
 
@@ -32,37 +29,37 @@
                 <li class="layui-nav-item" id="nav_posts">
                     <a href="/admin/posts">文章列表</a>
                 </li>
-                    <li class="layui-nav-item" id="nav_post">
+                <li class="layui-nav-item" id="nav_post">
                     <a href="/admin/post">添加文章</a>
-                </li>                   
+                </li>
+                </li>
+                <li class="layui-nav-item" id="nav_setting">
+                    <a href="/admin/setting">设置</a>
+                </li>
+                
             </ul>
         </div>
-        
+
         <script>
-            var navs = ["nav_posts","nav_post"]
-            function set_nav(id)
-            {
+            var navs = ["nav_posts", "nav_setting"]
+            function set_nav(id) {
                 console.log(`set nav ${id}`)
 
-                for(var i = 0;i< navs.length;++i)
-                {
+                for (var i = 0; i < navs.length; ++i) {
                     var exist = navs[i]
-                    var item = document.getElementById(exist) 
+                    var item = document.getElementById(exist)
 
-                    if(exist != id)
-                    {
-                        item.className="layui-nav-item"
+                    if (exist != id) {
+                        item.className = "layui-nav-item"
                     }
-                    else
-                    {
-                        item.className="layui-nav-item layui-this"
+                    else {
+                        item.className = "layui-nav-item layui-this"
                     }
                 }
             }
         </script>
         <div class="layui-row" style="padding: 1em 1em 0 1em">
-            {{block 'body'}}
-            {{/block}}
+            {{block 'body'}} {{/block}}
         </div>
     </div>
 

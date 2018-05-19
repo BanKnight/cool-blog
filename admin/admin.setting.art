@@ -1,0 +1,61 @@
+{{extend './layouts/default.art'}} {{block 'body'}}
+
+<script>
+    set_nav("nav_setting")
+
+    var layer
+    layui.use('layer', function () {
+        layer = layui.layer;
+    });
+
+    function summit(form_name) {
+        var $ = layui.$
+        var form = $(form_name)
+        var url = form.attr("action");
+        var data = form.serialize();
+
+        var index = layer.load(2)
+
+        $.ajax({
+            type: 'post',
+            url: url,
+            cache: false,
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+                layer.close(index)
+                layer.msg('提交成功', { icon: 6 });
+            },
+            error: function () {
+                layer.close(index)
+                layer.msg('提交失敗', { icon: 6 });
+            }
+        })
+    }
+</script>
+
+<div class="panel">
+    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="formDemoPane" onclick="summit('form')">保存修改</button>
+    <form class="layui-form layui-form-pane" id="form" action="/admin/setting" method="POST">
+        <fieldset class="layui-elem-field">
+            <legend>名字和描述</legend>
+            <div class="layui-field-box">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名字</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="web_name" required="" lay-verify="required" placeholder="请输入名字" autocomplete="off" class="layui-input layui-form-danger"
+                            value="{{web_name}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">描述</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="web_description" required="" lay-verify="required" placeholder="请输入描述" autocomplete="off" class="layui-input layui-form-danger"
+                            value="{{web_description}}">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{{/block}}

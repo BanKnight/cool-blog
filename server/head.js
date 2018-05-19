@@ -35,7 +35,7 @@ server.start_modules = async()=>
         return second.md.priority - first.md.priority
     })
 
-    console.dir(server.sorted_mds)
+    //console.dir(server.sorted_mds)
 
     for(var i = 0;i < server.sorted_mds.length;++i)
     {

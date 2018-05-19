@@ -29,7 +29,7 @@ me.start = async function()
         posts[post.id] = post
         posts_sorted.push(post)
 
-        console.log(`load a post,id:${post.id},url:${post.url},title:${post.title}`)
+        console.log(`load a post,id:${post.id},title:${post.title}`)
     })
 
     me.sort_posts()
