@@ -42,7 +42,7 @@ me.start = async function()
 
 function compare(first,second)
 {
-    return second.id - first.id
+    return second.create - first.create
 }
 
 me.sort_posts = function()
@@ -159,15 +159,26 @@ me.del_post = async(id)=>
     return false
 }
 
-me.upd_post = async(post)=>
+me.upd_post = async(post,old_id)=>
 {
+    if(old_id != null)
+    {
+        let is_existed = delete data.posts[id]
+
+        if(is_existed)
+        {
+            data.posts[post.id] = post
+        }
+    }
+
     const db_post = {
+        create : post.create,
         title : post.title,
         summary : post.summary,
         content : post.content,
     }
 
-    console.log(`upd a post,id:${post.id},url:${post.url},title:${post.title}`)
+    console.log(`upd a post,id:${post.id},title:${post.title}`)
     
     md_db.upsert("posts",{_id:post.id},db_post)
 }

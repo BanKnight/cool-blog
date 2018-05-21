@@ -29,7 +29,7 @@ routers.get("/post/:id",cache_router,async(ctx,next)=>
         return
     }
 
-    console.log(`try to get a post,id:${post.id},url:${post.url},title:${post.title}`)
+    console.log(`try to get a post,id:${post.id},title:${post.title}`)
 
     await ctx.render("post",{post: post})
 })

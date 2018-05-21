@@ -69,27 +69,61 @@ routers.get("/admin/post",login_checker.must,async(ctx,next)=>
 routers.post("/admin/post",login_checker.must,async(ctx,next)=>
 {
     let params = ctx.request.body
-    let post = await md_posts.get_post(params.id)
+    let post = null
 
-    if(post == null)
+    //new
+    if(params.real_id == '')
     {
+        params.real_id = null
         post = await md_posts.new_post(params)
     }
-    else
-    {
+    else if(params.real_id == params.id)
+    {//edit without the url
+        params.real_id = null
+        post = await md_posts.get_post(params.id)
+
+        if(post == null)       
+        {
+            ctx.body = {result:"failed",msg:"the post is already deleted"}
+            return
+        }
+
         post.title = params.title
         post.summary = params.summary
         post.content = params.content
 
         await md_posts.upd_post(post)
     }
+    else
+    {//edit url
+        let check_if_exist_post = await md_posts.get_post(params.id)
+        if(check_if_exist_post)
+        {
+            ctx.body = {result:"failed",msg:"the new url has been exist"}
+            return
+        }
 
-    ctx.body = {message:"ok",id:post.id}
+        post = await md_posts.get_post(params.real_id)
+        if(post == null)       
+        {
+            ctx.body = {result:"failed",msg:"the post is already deleted"}
+            return
+        }
+
+        md_posts.upd_post(post,params.real_id)
+    }
+
+    ctx.body = {result:"ok",id:post.id}
 
     md_cache.unset('/')
     md_cache.unset('/post/${post.id}')
     md_cache.unset('/posts')
     md_cache.unset_under('/posts')
+
+    if(params.real_id)
+    {
+        md_cache.unset('/post/${params.real_id}')
+    }
 })
 
 routers.get("/admin/post/:id",login_checker.must,async(ctx,next)=>

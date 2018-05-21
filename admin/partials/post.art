@@ -7,10 +7,13 @@
                     value="{{title || ''}}" />
             </div>
         </div>
+
+        <input type="hidden" name="real_id" id="real_id" value="{{id || ''}}" />
+
         <div class="layui-form-item">
             <label class="layui-form-label">url</label>
             <div class="layui-input-block">
-                <input type="text" name="id" required="" lay-verify="required" placeholder="请输入url" autocomplete="off" class="layui-input layui-form-danger"
+                <input type="text" name="id" id="id" required="" lay-verify="required" placeholder="请输入url" autocomplete="off" class="layui-input layui-form-danger"
                     value="{{id || ''}}" />
             </div>
         </div>
@@ -45,10 +48,15 @@
         });
 
         function summit() {
-            var $ = layui.$
             var form = $("form")
+            var real_id_item = document.getElementById("real_id")
+            var id_item = document.getElementById("id")
+
             var url = form.attr("action");
             var data = form.serialize();
+            var curr_id = id_item.value
+
+            console.dir(id_item)
 
             var index = layer.load(2)
 
@@ -61,6 +69,8 @@
                 success: function (data) {
                     layer.close(index)
                     layer.msg('提交成功', { icon: 6 });
+                    console.log(`curr_id is ${curr_id}`)
+                    real_id_item.value = curr_id
                 },
                 error: function () {
                     layer.msg('提交失敗', { icon: 6 });
