@@ -1,0 +1,80 @@
+{{extend './layouts/default.art'}} {{block 'body'}}
+
+<div class="panel">
+    <form class="layui-form layui-form-pane" id="form" action="/admin/debug">
+        <div class="layui-form-item">
+            <label class="layui-form-label">命令</label>
+            <div class="layui-input-block">
+                <select name="cmd" lay-verify="required">
+                    <option value="get">获取</option>
+                    <option value="set">赋值</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">参数</label>
+            <div class="layui-input-block">
+                <input type="text" name="arg" required lay-verify="required" placeholder="请输入参数" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+    </form>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-fluid" onclick="summit('form',cmd_cb)">运行</button>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <div class="layui-input-block">
+            <textarea name="result" id="result" class="layui-textarea" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    set_nav("nav_debug")
+    layui.use('form', function () {
+    });
+
+    function summit(form_name, cb) {
+        var form = $(form_name)
+        var url = form.attr("action");
+        var data = form.serialize();
+
+        var index = layer.load(2)
+
+        $.ajax({
+            type: 'post',
+            url: url,
+            cache: false,
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+                layer.close(index)
+                cb(data)
+            },
+            error: function () {
+                layer.close(index)
+                layer.msg('提交失敗', { icon: 6 });
+            }
+        })
+    }
+
+    function cmd_cb(data)
+     {
+        var result_area = document.getElementById("result")
+
+        if(data.result == true)
+        {
+            result_area.value = JSON.stringify(data.data)
+        }
+        else
+        {
+            result_area.value = `Err:${data.reason}`
+        }
+    }
+
+</script> {{/block}}

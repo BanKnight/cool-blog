@@ -17,6 +17,7 @@ require("./posts")
 require("./comments")
 
 require("./admin")
+require("./debug")
 //------------------------------------
 app
     .use(routers.routes())

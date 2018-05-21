@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="https:///cdn.bootcss.com/normalize/8.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https:///cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="/public/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/public/admin.style.css" media="all">

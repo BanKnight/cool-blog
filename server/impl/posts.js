@@ -112,6 +112,8 @@ me.new_post = async(post)=>
     assert(post.content)
     assert(post.summary)
 
+    assert(data.posts[post.id] == null,"you can't create a post when it's id is already exist")
+    
     post.create = Date.now()
 
     data.posts[post.id] = post

@@ -37,12 +37,14 @@
                 <li class="layui-nav-item" id="nav_setting">
                     <a href="/admin/setting">设置</a>
                 </li>
-                
+                <li class="layui-nav-item" id="nav_debug">
+                    <a href="/admin/debug">调试</a>
+                </li>             
             </ul>
         </div>
 
         <script>
-            var navs = ["nav_posts", "nav_setting"]
+            var navs = ["nav_posts", "nav_setting","nav_debug"]
             function set_nav(id) {
                 console.log(`set nav ${id}`)
 
