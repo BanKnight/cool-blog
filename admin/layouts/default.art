@@ -23,7 +23,7 @@
 
     <div class="layui-layout">
         <div class="layui-row">
-            <ul class="layui-nav layui-bg-molv">
+            <ul class="layui-nav layui-bg-cyan">
                 <li class="layui-nav-item">
                     <a href="/">主页</a>
                 </li>
@@ -39,12 +39,12 @@
                 </li>
                 <li class="layui-nav-item" id="nav_debug">
                     <a href="/admin/debug">调试</a>
-                </li>             
+                </li>
             </ul>
         </div>
 
         <script>
-            var navs = ["nav_posts", "nav_setting","nav_debug"]
+            var navs = ["nav_posts", "nav_setting", "nav_debug"]
             function set_nav(id) {
                 console.log(`set nav ${id}`)
 
@@ -64,6 +64,13 @@
         <div class="layui-row" style="padding: 1em 1em 0 1em">
             {{block 'body'}} {{/block}}
         </div>
+        <div class="layui-row " style="padding: 3px 0 0 0;text-align: center">
+            <div class="layui-bg-cyan layui-text" style="height:3em">
+                <a href="/." rel="nofollow">{{web_name}}</a> |
+                <a rel="nofollow" target="_blank" href="https://github.com/BanKnight/cool-blog">Powered by cool-blog</a>
+            </div>
+        </div>
+    </div>
     </div>
 
     <script>

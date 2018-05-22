@@ -31,7 +31,7 @@
         </div>
     </form>
 
-    <button class="layui-btn" id="summit" lay-submit="" lay-filter="formDemoPane" onclick="summit()">立即提交</button>
+    <button class="layui-btn layui-btn-fluid" id="summit" lay-submit="" lay-filter="formDemoPane" onclick="summit()">立即提交</button>
 
     <script>
         var layer

@@ -3,13 +3,16 @@
         {{title}}
     </h1>
     <div class="post-meta">
-        {{create | moment 'YYYY-MM-DD'}}
+        {{create | moment 'YYYY-MM-DD'}} | 
+        <a href="/admin/post/{{id}}">
+            編輯
+        </a>
     </div>
-    </a>
+
     <div class="post-content markdown-body">
         {{@content | md}}
     </div>
-    
+
     <script src="https://cdn.bootcss.com/react/16.0.0/umd/react.production.min.js">
     </script>
     <script src="https://cdn.bootcss.com/react-dom/16.0.0/umd/react-dom.production.min.js">
