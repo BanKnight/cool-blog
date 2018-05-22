@@ -21,7 +21,6 @@
         </tbody>
 
         <script>
-            var $
             var layer
 
             layui.use('layer', function () {
@@ -31,24 +30,27 @@
 
             function del_post(id) {
 
-                var id_name = `post_${id}`
-                var tr = document.getElementById(id_name)
-                var index = layer.load(2)
+                layer.confirm('確認刪除?', { icon: 3, title: '提示' }, function (index) {
+                    layer.close(index);
 
-                $.ajax({
-                    type: 'delete',
-                    url: `/admin/post/${id}`,
-                    cache: false,
-                    dataType: 'json',
-                    success: function (data) {
-                        layer.close(index)
-                        location.replace(location.href);
-                    },
-                    error: function () {
-                        layer.msg('提交失敗', { icon: 6 });
-                    }
-                })
-                
+                    var id_name = `post_${id}`
+                    var tr = document.getElementById(id_name)
+                    var index = layer.load(2)
+
+                    $.ajax({
+                        type: 'delete',
+                        url: `/admin/post/${id}`,
+                        cache: false,
+                        dataType: 'json',
+                        success: function (data) {
+                            layer.close(index)
+                            location.replace(location.href);
+                        },
+                        error: function () {
+                            layer.msg('提交失敗', { icon: 6 });
+                        }
+                    })
+                });
             }
 
         </script>
