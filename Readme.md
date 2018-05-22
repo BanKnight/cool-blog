@@ -1,36 +1,21 @@
-# coolblog
-a super cool blog
+# cool-blog
+一个轻量级的博客，仅带必要的功能
 
-## fetures
-+ nodejs
-+ comments
-+ search
-+ seo
+### 完成的部分
++ 首页
++ 浏览文章
++ 编辑文章
++ 删除文章
 
-## routers
-//---------------------------------------------
-```javascript
-let routers = {}
+### 待完成的部分
++ 评论
++ 统计
++ 分类
++ 标签
++ 置顶
++ seo优化
++ 待补充
 
-routers.use(err_router)
-routers.use(log_router)
-
-//---------------------------------------------
-routers.get("/",cache_router,front_end.on_home_page)
-routers.get("/posts",cache_router,front_end.on_posts_page)
-routers.get("/posts/:page",cache_router,front_end.on_posts_page)
-
-routers.get("/post/:id",cache_router,front_end.on_one_post_page)
-routers.get("/post/:id/comments",cache_router,front_end.on_get_comment_page)
-routers.put("/post/:id/comments",cache_router,front_end.on_new_comment_page)
-//---------------------------------------------
-routers.get("/admin",login_router,front_end.on_admin_page)
-routers.post("/admin/login",login_router,front_end.on_admin_login_page)
-routers.post("/admin/regist",login_router,front_end.on_admin_regist_page)
-//---------------------------------------------
-routers.get("/admin/posts",login_router,front_end.on_admin_posts_page)
-routers.get("/admn/post/:id",login_router,front_end.on_admin_read_post_page)
-routers.put("/admn/posts/:id",login_router,front_end.on_admin_new_post_page)
-routers.post("/admn/posts/:id",login_router,front_end.on_admin_edit_post_page)
-routers.del("/admn/posts/:id",login_router,front_end.on_admin_del_post_page)
-```
+## 重要时刻
+以下记录所有的重要时刻，使用倒序方式
+### 2018-05-21 正式上线
