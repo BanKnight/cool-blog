@@ -4,6 +4,7 @@ const server = require("../head")
 
 const app = server.app
 const md_users = server.modules.users
+const md_sessions = server.modules.sessions
 
 let cookie = {
     maxAge: '3600', // cookie有效时长
@@ -17,31 +18,16 @@ let cookie = {
     signed: '',
   }
 
-let store = {}
-
-store.get = function(id)
-{
-    return store[id]
-}
-store.set = function(id,val)
-{
-    store[id] = val
-}
-store.del = function(id)
-{
-    delete store[id]
-}
 
 const session_router = session({
-    key: 'SESSION_ID',
-    store: store,
-    cookie: cookie
+    store: md_sessions,
+    cookie: cookie,
   })
 
 
 function find_user(ctx,next)
 {
-    let user_id = ctx.session.user_id || 1
+    let user_id = ctx.session.user_id
     if(user_id == null)
     {
         return next()
