@@ -98,6 +98,10 @@ $(document).ready(function () {
                 add_one_comment(data.comment)
             }
 
+            el.author.value = ""
+            el.email.value = ""
+            el.website.value = ""
+            el.content.innerHTML = ""
         },'json')
     })
 
