@@ -43,7 +43,7 @@ me.start = async function()
 
 me.compare = function(first,second)
 {
-    return first.id - second.id
+    return second.index - first.index
 }
 
 me.get_through_page = function(post_id,page_no,max_number_in_page)
@@ -125,8 +125,10 @@ me.new = async function(post_id,comment)
         data[post_id] = that_comments
     }
 
-    that_comments.sort.push(comment)
+    that_comments.sort.unshift(comment)
     that_comments.keys[comment.id] = comment
+
+    comment.index = that_comments.sort.length
 
     const db_one = {
         author : comment.author,
@@ -136,6 +138,7 @@ me.new = async function(post_id,comment)
         post : post_id,
         create : comment.create,
         reply : comment.reply,
+        index : comment.index,
     }
 
     await md_db.upsert("comments",{_id : comment.id},db_one)

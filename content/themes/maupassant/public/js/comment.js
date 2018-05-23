@@ -57,6 +57,27 @@ $(document).ready(function () {
         return true;
     };
 
+    const comment_box = $("#isso-root")
+
+    function add_one_comment(comment)
+    {
+        comment_box.prepend(`<div class="isso-comment">
+        <div class="text-wrapper">
+            <div role="meta" class="isso-comment-header">
+                <a href="${comment.website}" rel="external nofollow" target="_blank" class="author">${comment.author}</a>
+                <span class="spacer">•</span>
+                <a href="#isso-2" class="permalink">
+                    <time>${comment.create}</time>
+                </a>
+            </div>
+            <div class="text">
+                <p>${comment.content}</p>
+            </div>
+        </div>
+        </div>
+        `)
+    }
+
     //按钮点击事件
     $("[type=submit]", el).on("click", function () {
         if (!el.validate()) {
@@ -72,33 +93,24 @@ $(document).ready(function () {
 
         $.post(`/comments/${post_id}`,data,function(data)
         {
-            alert(data)
+            if(data.result == true)
+            {
+                add_one_comment(data.comment)
+            }
+
         },'json')
     })
-
-    const comment_box = $("#isso-root")
 
     function on_page_back(result) 
     {
         console.dir(result)
 
-        for (var i = 0, len = result.page.length; i < len; ++i) {
+        for (var i = result.page.length - 1; i >= 0; --i) 
+        {
             var comment = result.page[i]
-            comment_box.append(`<div class="isso-comment">
-            <div class="text-wrapper">
-                <div role="meta" class="isso-comment-header">
-                    <a href="${comment.website}" rel="external nofollow" target="_blank" class="author">${comment.author}</a>
-                    <span class="spacer">•</span>
-                    <a href="#isso-2" class="permalink">
-                        <time>${comment.create}</time>
-                    </a>
-                </div>
-                <div class="text">
-                    <p>${comment.content}</p>
-                </div>
-            </div>
-            </div>
-            `)
+
+            add_one_comment(comment)
+            
         }
     }
     //获取数据

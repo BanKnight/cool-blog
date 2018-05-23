@@ -6,6 +6,11 @@ const md_cache = server.modules.cache
 
 const cacher = async(ctx,next)=>
 {
+    if(ctx.req.method != "GET")
+    {
+        return next()   
+    }
+
     const cache = md_cache.get(ctx.path)
     if(cache && cache.real)
     {
@@ -15,8 +20,9 @@ const cacher = async(ctx,next)=>
     }
 
     await next()
-
+    
     md_cache.set(ctx.path,ctx.body)
+    
 }
 
 const compresser = compress({

@@ -22,13 +22,17 @@ routers.post("/comments/:post_id",cache_router,async(ctx,next)=>
     const post = md_posts.get_post(post_id)
     if(post == null)
     {
+        console.log(`no such post:${post_id}`)
         return
     }
 
     await md_comments.new(post_id,comment)
 
-    ctx.body = {result : true,info:post_id}
+    console.dir(comment)
 
+    ctx.body = {result : true,comment:comment}
+
+    md_cache.unset(`/comments/${post_id}`)
     md_cache.unset_under(`/comments/${post_id}`)
 
 })
