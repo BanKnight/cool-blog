@@ -95,7 +95,7 @@ routers.post("/admin/post",login_checker.must,async(ctx,next)=>
         post.summary = params.summary
         post.content = params.content
 
-        await md_posts.upd_post(post,params.real_id)
+        md_posts.upd_post(post,params.real_id)
     }
 
     ctx.body = {result:"ok",id:post.id}
@@ -108,6 +108,10 @@ routers.post("/admin/post",login_checker.must,async(ctx,next)=>
     if(params.real_id)
     {
         md_cache.unset('/post/${params.real_id}')
+        md_cache.unset(`/comments/${params.real_id}`)
+        md_cache.unset_under(`/comments/${params.real_id}`)
+
+        md_comments.change(params.real_id,params.id)
     }
 })
 

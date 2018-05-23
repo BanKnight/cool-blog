@@ -1,16 +1,18 @@
-{{extend './layouts/default.art'}}
-
-{{block 'meta_title'}}
-    {{post.title}} | {{web_name}}
-{{/block}}
+{{extend './layouts/default.art'}} 
+{{block 'meta_title'}}{{post.title}} | {{web_name}} {{/block}} 
 
 {{block 'head'}}
-    
-    <link href="https://cdn.bootcss.com/github-markdown-css/2.8.0/github-markdown.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" rel="stylesheet">
-    
-{{/block`}}
+
+<link href="https://cdn.bootcss.com/github-markdown-css/2.8.0/github-markdown.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" rel="stylesheet">
+<link href="/public/css/isso.css" rel="stylesheet"> 
+<script src="/public/js/comment.js" async></script>
+{{/block`}} 
 
 {{block 'body'}}
     {{include './partials/post.art' post}}
+
+<section id="isso-thread" post="{{post.id}}"class="Comments">
+</section>
+
 {{/block}}
