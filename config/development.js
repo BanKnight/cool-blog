@@ -15,5 +15,5 @@ module.exports = {
             pass: '654321'
         }
     },
-    mail_recv:"123456789@163.com",
+    mail_accepter:"123456789@163.com",
 }

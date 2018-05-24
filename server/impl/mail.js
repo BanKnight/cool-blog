@@ -14,11 +14,11 @@ me.start = async function()
     return true
 }
 
-me.send = function(to,subject,text)
+me.send = function(subject,text)
 {
     const option = {
         from : 'noreply@cool-blog',
-        to : to,
+        to : config.mail_accepter,
         subject : subject,
         text : text,
     }
