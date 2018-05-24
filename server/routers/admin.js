@@ -10,6 +10,7 @@ const routers = server.routers
 const md_posts = server.modules.posts
 const md_cache = server.modules.cache
 const md_basic = server.modules.basic
+const md_mail = server.modules.mail
 
 routers.get("/admin",login_checker.find,async(ctx,next)=>
 {
@@ -38,6 +39,9 @@ routers.post("/admin",login_checker.find,async(ctx,next)=>
     {
         ctx.session.user_id = 1
         ctx.redirect("/admin/posts")
+
+        md_mail.send("notice","there is someone loging your website")
+
         return
     }
 

@@ -13,5 +13,6 @@ server.modules.users = require("./users")            //仅仅用来管理登录�
 server.modules.posts = require("./posts")
 server.modules.comments = require("./comments")
 server.modules.cache = require("./cache")
+server.modules.mail = new_module()
 
 server.modules.sessions = new_module()

@@ -6,6 +6,7 @@ const routers = server.routers
 const md_comments = server.modules.comments
 const md_posts = server.modules.posts
 const md_cache = server.modules.cache
+const md_mail = server.modules.mail
 
 routers.get("/comments/:post_id/:page",cache_router,async(ctx,next)=>
 { 
@@ -34,5 +35,7 @@ routers.post("/comments/:post_id",cache_router,async(ctx,next)=>
 
     md_cache.unset(`/comments/${post_id}`)
     md_cache.unset_under(`/comments/${post_id}`)
+
+    md_mail.send("notice",`${comment.author} has comment under your post:${post.title} - ${comment.content}`)
 
 })
