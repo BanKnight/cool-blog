@@ -61,13 +61,16 @@ $(document).ready(function () {
 
     function add_one_comment(comment)
     {
+
+        comment.format_create = moment(comment.create).fromNow()
+
         comment_box.prepend(`<div class="isso-comment">
         <div class="text-wrapper">
             <div role="meta" class="isso-comment-header">
                 <a href="${comment.website}" rel="external nofollow" target="_blank" class="author">${comment.author}</a>
                 <span class="spacer">•</span>
                 <a href="#isso-2" class="permalink">
-                    <time>${comment.create}</time>
+                    <time>${comment.format_create}</time>
                 </a>
             </div>
             <div class="text">
