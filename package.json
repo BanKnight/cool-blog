@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env NODE_ENV=development node index.js",
     "start":"NODE_ENV=production forever -p . -l ./logs/access.log -e ./logs/error.log start index.js",
-    "stop":"forever stop index.js"
+    "stop":"forever stop index.js",
+    "restart":"forever restart index.js"
   },
   "keywords": [
     "blog",
