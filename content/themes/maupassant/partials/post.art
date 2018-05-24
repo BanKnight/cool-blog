@@ -9,7 +9,7 @@
         </a>
     </div>
 
-    <div class="post-content markdown-body">
+    <div class="markdown-body" style="clear: left;padding-top: 15px;">
         {{@content | md}}
     </div>
 
@@ -21,4 +21,5 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/blockies-identicon@0.1.0/blockies.min.js">
     </script>
+
 </div>

@@ -16,8 +16,8 @@
 {{block 'body'}}
     {{include './partials/post.art' post}}
 
-    <hr></hr>
 <section id="isso-thread" post="{{post.id}}" class="Comments">
+    <h4>评论一下(至少3个字)</h4>
 </section>
 
 {{/block}}
