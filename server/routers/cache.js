@@ -14,14 +14,31 @@ const cacher = async(ctx,next)=>
     const cache = md_cache.get(ctx.path)
     if(cache && cache.real)
     {
-        ctx.body = cache.real
-        console.log(`fetch from cache ${ctx.path}`)
+        let info = cache.real
+
+        ctx.type = info.type
+        ctx.body = info.body
+
+        ctx.set("content-encoding",info.encoding)
+
+        console.log(`fetch cache for:${ctx.path}`)
+
         return
     }
 
     await next()
-    
-    md_cache.set(ctx.path,ctx.body)
+
+    const info = {
+        type : ctx.type,
+        encoding : ctx.response.get("content-encoding"),
+        body : ctx.body,
+    }
+
+    //console.log(`return type is:${ctx.type},encoding:${info.encoding}`)
+
+    // console.dir(info)
+
+    md_cache.set(ctx.path,info)
     
 }
 
@@ -35,4 +52,4 @@ const compresser = compress({
 
 
 //Todo change to cache and compress
-module.exports = compose([cacher])
+module.exports = compose([compresser,cacher])
