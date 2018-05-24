@@ -23,6 +23,8 @@
     "koa-compose": "^4.0.0",
     "koa-compress": "^3.0.0",
     "koa-handle-error": "0.0.5",
+    "koa-helmet": "^4.0.0",
+    "koa-limit": "^1.0.2",
     "koa-router": "^7.4.0",
     "koa-session-minimal": "^3.0.4",
     "koa-static-cache": "^5.1.2",

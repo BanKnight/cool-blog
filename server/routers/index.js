@@ -7,6 +7,7 @@ const routers = server.routers
 //require("./error")
 require("./log")
 require("./state")
+require("./default")
 
 require("./template")
 require("./static")
