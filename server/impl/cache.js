@@ -48,6 +48,8 @@ me.set = function(path,val)
 
 me.unset = function(path)
 {
+    console.log(`cache unset:${path}`)
+
     const curr = me.get_node_from_path(path)
 
     curr.real = null
@@ -55,6 +57,8 @@ me.unset = function(path)
 
 me.unset_under = function(path)
 {
+    console.log(`cache unset under:${path}`)
+
     const curr = me.get_node_from_path(path)
 
     curr.children = {}

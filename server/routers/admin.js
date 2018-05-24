@@ -101,13 +101,13 @@ routers.post("/admin/post",login_checker.must,async(ctx,next)=>
     ctx.body = {result:"ok",id:post.id}
 
     md_cache.unset('/')
-    md_cache.unset('/post/${post.id}')
+    md_cache.unset(`/post/${post.id}`)
     md_cache.unset('/posts')
     md_cache.unset_under('/posts')
 
     if(params.real_id)
     {
-        md_cache.unset('/post/${params.real_id}')
+        md_cache.unset(`/post/${params.real_id}`)
         md_cache.unset(`/comments/${params.real_id}`)
         md_cache.unset_under(`/comments/${params.real_id}`)
 
@@ -137,7 +137,7 @@ routers.del("/admin/post/:id",login_checker.must,async(ctx,next)=>
     ctx.body = {message:"ok",id:ctx.params.id}
 
     md_cache.unset('/')
-    md_cache.unset('/post/${post.id}')
+    md_cache.unset(`/post/${post.id}`)
     md_cache.unset('/posts')
     md_cache.unset_under('/posts')
 
