@@ -20,7 +20,7 @@ routers.post("/comments/:post_id",cache_router,async(ctx,next)=>
     const post_id = ctx.params.post_id
     const comment = ctx.request.body
 
-    const post = md_posts.get_post(post_id)
+    const post = await md_posts.get_post(post_id)
     if(post == null)
     {
         console.log(`no such post:${post_id}`)
@@ -36,6 +36,6 @@ routers.post("/comments/:post_id",cache_router,async(ctx,next)=>
     md_cache.unset(`/comments/${post_id}`)
     md_cache.unset_under(`/comments/${post_id}`)
 
-    md_mail.send("notice",`${comment.author} has comment under your post:${post.title} - ${comment.content}`)
+    md_mail.send("notice",`author:${comment.author}] comment under your post:${post.title},content: ${comment.content}`)
 
 })

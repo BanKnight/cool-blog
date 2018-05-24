@@ -16,6 +16,8 @@ me.start = async function()
 
 me.send = function(subject,text)
 {
+    console.log(`send mail:${text}`)
+
     const option = {
         from : config.mail_sender.auth.user,
         to : config.mail_accepter,
