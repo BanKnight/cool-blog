@@ -17,7 +17,7 @@ me.start = async function()
 me.send = function(subject,text)
 {
     const option = {
-        from : 'noreply@cool-blog',
+        from : config.mail_sender.auth.user,
         to : config.mail_accepter,
         subject : subject,
         text : text,
