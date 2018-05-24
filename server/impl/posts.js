@@ -10,7 +10,6 @@ const md_db = server.modules.db
 
 me.start = async function()
 {
-
     const posts = data.posts
     const posts_sorted = data.posts_sorted     //最新的在前面
 
@@ -28,6 +27,11 @@ me.start = async function()
 
         posts[post.id] = post
         posts_sorted.push(post)
+
+        if(post.static == true)
+        {
+            data.static_posts[post.id] = post
+        }
 
         console.log(`load a post,id:${post.id},title:${post.title}`)
     })
@@ -119,6 +123,11 @@ me.new_post = async(post)=>
     data.posts[post.id] = post
     data.posts_sorted.unshift(post)
 
+    if(post.static == true)
+    {
+        data.static_posts[post.id] = post
+    }
+
     const db_post = {
         _id:post.id,
         create : post.create,
@@ -153,6 +162,11 @@ me.del_post = async(id)=>
 
         data.posts_sorted.splice(i,1)
 
+        if(post.static == true)
+        {
+            delete data.static_posts[id]
+        }
+
         await md_db.remove("posts",{_id:id})
 
         return true
@@ -161,11 +175,16 @@ me.del_post = async(id)=>
     return false
 }
 
+me.del_from_static = function(id)
+{
+    delete data.static_posts[id]
+}
+
 me.upd_post = async(post,old_id)=>
 {
     if(old_id != null)
     {
-        let is_existed = delete data.posts[id]
+        let is_existed = delete data.posts[old_id]
 
         if(is_existed)
         {
@@ -178,6 +197,7 @@ me.upd_post = async(post,old_id)=>
         title : post.title,
         summary : post.summary,
         content : post.content,
+        static : post.static,
     }
 
     console.log(`upd a post,id:${post.id},title:${post.title}`)

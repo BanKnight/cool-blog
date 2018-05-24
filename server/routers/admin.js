@@ -92,11 +92,17 @@ routers.post("/admin/post",login_checker.must,async(ctx,next)=>
     {
         post = old_post
 
+        if(params.static != post.static && params.static == false)
+        {
+            md_posts.del_from_static(post.id)
+        }
+
         if(params.real_id == params.id)
         {//edit without the url/id
             params.real_id = null
         }
 
+        post.id = params.id
         post.title = params.title
         post.summary = params.summary
         post.content = params.content
