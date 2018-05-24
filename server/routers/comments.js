@@ -36,6 +36,6 @@ routers.post("/comments/:post_id",cache_router,async(ctx,next)=>
     md_cache.unset(`/comments/${post_id}`)
     md_cache.unset_under(`/comments/${post_id}`)
 
-    md_mail.send("notice",`author:${comment.author}] comment under your post:${post.title},content: ${comment.content}`)
+    md_mail.send("notice",`author:${comment.author} comment under your post:${post.title},content: ${comment.content}`)
 
 })

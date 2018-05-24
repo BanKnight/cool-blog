@@ -40,10 +40,12 @@ routers.post("/admin",login_checker.find,async(ctx,next)=>
         ctx.session.user_id = 1
         ctx.redirect("/admin/posts")
 
-        md_mail.send("notice","there is someone loging your website")
+        md_mail.send("notice","there is someone loging into your website")
 
         return
     }
+
+    md_mail.send("notice","someone is failed to login your website")
 
     await ctx.redirect("/admin")
 })
