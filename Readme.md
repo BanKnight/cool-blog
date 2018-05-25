@@ -3,7 +3,11 @@
 
 ## 安装
 + 安装并启动mongodb,[官网](https://docs.mongodb.com/v3.6/administration/install-community/)
-+ 安装nodejs,[官网](https://nodejs.org/en/)
++ 安装 nodejs,[官网](https://nodejs.org/en/)
++ 安装 forever
+```shell
+ install forever -g
+ ```
 + 启动
 
 ```shell

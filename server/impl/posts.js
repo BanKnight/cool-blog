@@ -117,7 +117,7 @@ me.new_post = async(post)=>
 {
     assert(post.title)
     assert(post.content)
-    assert(post.summary)
+    // assert(post.summary)
 
     assert(data.posts[post.id] == null,"you can't create a post when it's id is already exist")
     

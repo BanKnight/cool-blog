@@ -21,6 +21,7 @@ me.start = async function()
 
     data.web_name = data.web_name || "Cool blog"
     data.web_description = data.web_description || "cool description"
+    data.web_about = data.web_about || ""
 
     return true
 }

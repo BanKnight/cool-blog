@@ -42,6 +42,9 @@
 						首页
 					</i>
 				</a>
+				<a href="/about/">
+					<i class="fa fa-user"> 关于</i>
+				</a>
 			</div>
 		</div>
 		<div class="pure-g" id="layout">

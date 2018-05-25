@@ -14,3 +14,8 @@ routers.get("/",cache_router,async(ctx,next)=>
 
     await ctx.render("home",info)
 })
+
+routers.get("/about",cache_router,async(ctx,next)=>
+{
+    await ctx.render("about")
+})
