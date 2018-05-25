@@ -37,9 +37,6 @@
                 <li class="layui-nav-item" id="nav_setting">
                     <a href="/admin/setting">设置</a>
                 </li>
-                <li class="layui-nav-item" id="nav_about">
-                    <a href="/admin/about">关于</a>
-                </li>
                 <li class="layui-nav-item" id="nav_debug">
                     <a href="/admin/debug">调试</a>
                 </li>
