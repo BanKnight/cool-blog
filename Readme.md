@@ -1,5 +1,5 @@
 ## cool-blog
-一个用nodejs开发的轻量级博客,使用例子：[BanSky](http://myself.mustbe.cool)
+一个用nodejs开发的轻量级博客,使用例子：[BanSky](http://bansky.mustbe.cool)
 
 ## 安装
 + 安装并启动mongodb,[官网](https://docs.mongodb.com/v3.6/administration/install-community/)
