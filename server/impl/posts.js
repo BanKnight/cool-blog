@@ -26,11 +26,14 @@ me.start = async function()
         post.content = db_post.content
 
         posts[post.id] = post
-        posts_sorted.push(post)
 
         if(post.static == true)
         {
             data.static_posts[post.id] = post
+        }
+        else
+        {
+            posts_sorted.push(post)
         }
 
         console.log(`load a post,id:${post.id},title:${post.title}`)

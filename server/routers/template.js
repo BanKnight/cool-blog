@@ -1,6 +1,6 @@
 const path = require("path")
 const assert = require("assert")
-const Remarkable = require('remarkable')
+const MarkdownIt = require('markdown-it')
 const hljs  = require('highlight.js') // https://highlightjs.org/
 const moment = require("moment")
 
@@ -15,7 +15,7 @@ const app = server.app
 
 {
 // Actual default values
-    var md = new Remarkable({
+    var md = new MarkdownIt({
         html:         true, 
         highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {

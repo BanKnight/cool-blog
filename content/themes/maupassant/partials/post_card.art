@@ -8,7 +8,7 @@
         {{create | moment 'YYYY-MM-DD'}}
     </div>
     <div class="post-content">
-        {{summary}}
+        {{@summary}}
     </div>
     <p class="readmore">
         <a href="/post/{{id}}">
