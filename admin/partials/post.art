@@ -45,7 +45,7 @@
         </div>
     </form>
 
-    <button class="layui-btn layui-btn-fluid" id="summit" lay-submit="" lay-filter="formDemoPane" onclick="summit()">立即提交</button>
+    <button class="layui-btn layui-btn-fluid" id="summit" lay-submit="" lay-filter="formDemoPane" onclick="summit()">立即保存</button>
 
     <script>
         var layer
@@ -59,11 +59,23 @@
             mditor.toolbar.items = mditor.toolbar.items.slice(12);
         });
 
+        var form = $("#form")
+
+        form.keydown(function (e) {
+            e = e||window.event;
+            if (e.ctrlKey && e.keyCode == 83)
+            { 　
+                summit()
+                event.returnValue=false;
+                return false
+
+            }
+        })
         function summit() {
 
             //console.log(mditor.viewer.html)
 
-            var form = $("#form")
+            
             var real_id_item = $("#real_id")
             var id_item = $("#id")
             var summary_item = $("#summary")
@@ -78,24 +90,25 @@
             var data = form.serialize();
             var curr_id = id_item.val()
 
-            //console.dir(id_item)
+            console.dir(data)
 
             var index = layer.load(2)
 
             $.ajax({
                 type: 'post',
                 url: url,
-                cache: false,
                 data: data,
                 dataType: 'json',
                 success: function (data) {
                     layer.close(index)
-                    layer.msg('提交成功', { icon: 6 });
+                    layer.msg('保存成功', { icon: 6 });
                     console.log(`curr_id is ${curr_id}`)
                     real_id_item.val(curr_id)
                 },
-                error: function () {
-                    layer.msg('提交失敗', { icon: 6 });
+                error: function (err) {
+                    layer.close(index)
+
+                    layer.msg('提交失敗:' + err, { icon: 6 });
                 }
             })
         }

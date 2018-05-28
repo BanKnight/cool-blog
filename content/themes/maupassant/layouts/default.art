@@ -7,7 +7,7 @@
 	<meta content="yes" name="apple-mobile-web-app-capable">
 	<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
 	<meta content="telephone=no" name="format-detection">
-	<title>{{block 'meta_title'}}{{web_name}}{{/block}}</title>
+	<title>{{block 'meta_title'}}{{web_name}} | {{web_description}} {{/block}}</title>
 
 	<meta name="description" content="{{meta_description || web_description}}}}">
 
