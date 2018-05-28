@@ -52,3 +52,33 @@ me.try_update = function()
     data.txt.version = data.urls.version
 }
 
+me.push = async function(url)
+{
+    if(config.baidu == null)
+    {
+        return
+    }
+
+    return new Promise((resolve,reject)=>
+    {
+        request({
+            url: config.baidu,
+            method: 'POST',
+            headers:{
+                "content-type":"text/plain",
+            },
+            body: `${config.site}${url}\n`
+        },function(error, response, body)
+        {
+            if (!error && response.statusCode == 200) 
+            {
+                resolve()
+            }
+            else
+            {
+                reject(error)
+            }
+        })
+    })
+}
+

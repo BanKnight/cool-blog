@@ -17,4 +17,5 @@ module.exports = {
         }
     },
     mail_accepter:"123456789@163.com",              //收邮件的人
+    baidu:"http://data.zz.baidu.com/urls?site=bansky.mustbe.cool&token=WD6MMUFwynEgz7Dl",
 }

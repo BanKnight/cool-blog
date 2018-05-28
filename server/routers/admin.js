@@ -88,6 +88,8 @@ routers.post("/admin/post",login_checker.must,async(ctx,next)=>
     {
         params.real_id = null
         post = await md_posts.new_post(params)
+
+        md_sitemap.push(`/post/${post.id}`)
     }
     else    //编辑
     {
