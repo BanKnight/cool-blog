@@ -82,6 +82,9 @@ me.try_update_robots = function()
         real = `Disallow:/admin/\n`
         size += buffer.write(real,size,real.length,"utf8")
 
+        real = `Disallow:/public/\n`
+        size += buffer.write(real,size,real.length,"utf8")
+
         real = `Disallow:/*.js$\n`
         size += buffer.write(real,size,real.length,"utf8")
 
