@@ -5,6 +5,7 @@ const me = server.modules.basic
 const data = me.data
 
 const md_db = server.modules.db
+const md_sitemap = server.modules.sitemap
 
 me.start = async function()
 {
@@ -22,6 +23,9 @@ me.start = async function()
     data.web_name = data.web_name || "Cool blog"
     data.web_description = data.web_description || "cool description"
     data.web_about = data.web_about || ""
+
+    md_sitemap.set_url("/")
+    md_sitemap.set_url("/about")
 
     return true
 }

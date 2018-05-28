@@ -16,3 +16,4 @@ server.modules.cache = require("./cache")
 server.modules.mail = new_module()
 
 server.modules.sessions = new_module()
+server.modules.sitemap = require("./sitemap")

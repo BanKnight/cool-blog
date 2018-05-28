@@ -1,4 +1,5 @@
 module.exports = {
+    site : "http://bansky.mustbe.cool",
     port:80,
     content:"./content",
     theme:"maupassant",

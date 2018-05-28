@@ -7,6 +7,7 @@ const me = server.modules.posts
 const data = me.data
 
 const md_db = server.modules.db
+const md_sitemap = server.modules.sitemap
 
 me.start = async function()
 {
@@ -36,7 +37,7 @@ me.start = async function()
             posts_sorted.push(post)
         }
 
-        console.log(`load a post,id:${post.id},title:${post.title}`)
+        md_sitemap.set_url(`/post/${post.id}`)
     })
 
     me.sort_posts()

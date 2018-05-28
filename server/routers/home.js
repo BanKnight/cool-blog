@@ -3,6 +3,7 @@ const cache_router = require("./cache")
 const routers = server.routers
 
 const md_posts = server.modules.posts
+const md_sitemap = server.modules.sitemap
 
 routers.get("/",cache_router,async(ctx,next)=>
 {
@@ -18,4 +19,9 @@ routers.get("/",cache_router,async(ctx,next)=>
 routers.get("/about",cache_router,async(ctx,next)=>
 {
     await ctx.render("about")
+})
+
+routers.get("/site.txt",cache_router,async(ctx,next)=>
+{
+    ctx.body = md_sitemap.get_txt()
 })

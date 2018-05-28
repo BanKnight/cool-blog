@@ -11,6 +11,7 @@ const md_posts = server.modules.posts
 const md_cache = server.modules.cache
 const md_basic = server.modules.basic
 const md_mail = server.modules.mail
+const md_sitemap = server.modules.sitemap
 
 routers.get("/admin",login_checker.find,async(ctx,next)=>
 {
@@ -109,6 +110,8 @@ routers.post("/admin/post",login_checker.must,async(ctx,next)=>
 
         md_posts.upd_post(post,params.real_id)
     }
+
+    md_sitemap.set_url(`/post/${post.id}`)
 
     ctx.body = {result:"ok",id:post.id}
 
