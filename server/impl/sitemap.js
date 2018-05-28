@@ -101,6 +101,11 @@ me.try_update_robots = function()
         size += buffer.write(real,size,real.length,"utf8")
     }
 
+    {
+        let real = `Sitemap: sitemap.txt\n`
+        size += buffer.write(real,size,real.length,"utf8")
+    }
+
     data.robots.content = buffer.toString("utf8",0,size)
     data.robots.version = data.urls.version
 }
