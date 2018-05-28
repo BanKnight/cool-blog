@@ -88,7 +88,7 @@ routers.post("/admin/post",login_checker.must,async(ctx,next)=>
         params.real_id = null
         post = await md_posts.new_post(params)
     }
-    else
+    else    //编辑
     {
         post = old_post
 

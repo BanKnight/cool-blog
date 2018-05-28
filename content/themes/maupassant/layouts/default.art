@@ -56,7 +56,8 @@
 			<div class="pure-u-1">
 				<div id="footer">Copyright © 2018
 					<a href="/." rel="nofollow">{{web_name}} </a> |
-					<a rel="nofollow" target="_blank" href="https://github.com/BanKnight/cool-blog">Powered by cool-blog</a>
+					<a rel="nofollow" target="_blank" href="https://github.com/BanKnight/cool-blog">Powered by cool-blog</a> | 
+					<a rel="nofollow" target="_blank" href="/admin">后台管理</a>
 				</div>
 			</div>
 		</div>
