@@ -21,7 +21,12 @@ routers.get("/about",cache_router,async(ctx,next)=>
     await ctx.render("about")
 })
 
-routers.get("/site.txt",cache_router,async(ctx,next)=>
+routers.get("/sitemap.txt",cache_router,async(ctx,next)=>
 {
     ctx.body = md_sitemap.get_txt()
+})
+
+routers.get("/robots.txt",cache_router,async(ctx,next)=>
+{
+    ctx.body = md_sitemap.get_robots()
 })

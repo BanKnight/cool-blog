@@ -15,3 +15,8 @@ data.txt = {
     version : 0,            
     content : "",           //生成的内容
 }
+
+data.robots = {
+    version : 0,
+    content : "",
+}
