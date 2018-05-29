@@ -9,7 +9,7 @@
 	<meta content="telephone=no" name="format-detection">
 	<title>{{block 'meta_title'}}{{web_name}} | {{web_description}} {{/block}}</title>
 
-	<meta name="description" content="{{meta_description || web_description}}}}">
+	<meta name="description" content="{{block 'meta_description'}} {{meta_description || web_description}}}} {{/block}}">
 
 	<link rel="stylesheet" href="/public/css/style.css">
 	<link rel="stylesheet" href="https:///cdn.bootcss.com/normalize/8.0.0/normalize.min.css">

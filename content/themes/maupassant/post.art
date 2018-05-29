@@ -1,5 +1,6 @@
 {{extend './layouts/default.art'}} 
 {{block 'meta_title'}}{{post.title}} | {{web_name}} {{/block}} 
+{{block 'meta_description'}} {{web_description}} | {{post.summary}} {{/block}} 
 
 {{block 'head'}}
 
