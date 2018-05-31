@@ -4,9 +4,18 @@ require("./kernel")
 
 const server = require("./server")
 
-if(server.start() == false)
+async function start()
 {
-    console.log("start server error")
+    if(await server.start() == false)
+    {
+        console.log("start server error")
+    }
 }
+
+start()
+
+
+
+
  
 

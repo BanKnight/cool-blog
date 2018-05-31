@@ -20,6 +20,7 @@
 	<script src="https:///cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js" async>
 	</script> {{block 'head'}} {{/block`}}
 
+	{{@inject_head}}
 </head>
 
 <body>
