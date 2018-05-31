@@ -102,7 +102,7 @@ me.try_update_robots = function()
     }
 
     {
-        let real = `Sitemap:sitemap.txt\n`
+        let real = `Sitemap:${config.site}/sitemap.txt\n`
         size += buffer.write(real,size,real.length,"utf8")
     }
 
