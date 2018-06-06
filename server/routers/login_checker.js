@@ -7,15 +7,7 @@ const md_users = server.modules.users
 const md_sessions = server.modules.sessions
 
 let cookie = {
-    maxAge: '3600', // cookie有效时长
-    expires: '3600',  // cookie失效时间
-    path: '', // 写cookie所在的路径
-    domain: '', // 写cookie所在的域名
-    httpOnly: '', // 是否只用于http请求中获取
-    overwrite: '',  // 是否允许重写
-    secure: '',
-    sameSite: '',
-    signed: '',
+    maxAge: 20 * 24 * 3600 * 1000, // cookie有效时长
   }
 
 

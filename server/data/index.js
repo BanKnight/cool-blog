@@ -7,6 +7,8 @@ function new_module()
 
 //---------------------------------------------
 server.modules.basic = new_module()
+server.modules.timers = new_module()
+
 server.modules.db = require("./db")
 server.modules.users = require("./users")            //仅仅用来管理登录用的
 
@@ -17,3 +19,4 @@ server.modules.mail = new_module()
 
 server.modules.sessions = require("./sessions")
 server.modules.sitemap = require("./sitemap")
+server.modules.timers = new_module()
