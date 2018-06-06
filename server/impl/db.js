@@ -37,6 +37,7 @@ me.load = async(name,cond,fields)=>
         assert(data.db)
 
         cond = cond || {}
+        fields = fields || {}
 
         const col = data.db.collection(name)
         const ret = await col.find(cond).toArray()
@@ -73,6 +74,20 @@ me.upsert = async(name,cond,db_data)=>
     }
 }
 
+me.index = async(name,field)=>
+{
+    try
+    {
+        const col = data.db.collection(name)
+
+        const r = await col.createIndex(field,{unique : true})
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+}
+
 me.remove = async(name,cond)=>
 {
     try
@@ -80,6 +95,20 @@ me.remove = async(name,cond)=>
         const col = data.db.collection(name)
 
         const r = await col.deleteOne(cond)    
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+}
+
+me.remove_many = async(name,cond)=>
+{
+    try
+    {
+        const col = data.db.collection(name)
+
+        const r = await col.deleteMany(cond)    
     }
     catch(err)
     {

@@ -15,5 +15,5 @@ server.modules.comments = require("./comments")
 server.modules.cache = require("./cache")
 server.modules.mail = new_module()
 
-server.modules.sessions = new_module()
+server.modules.sessions = require("./sessions")
 server.modules.sitemap = require("./sitemap")

@@ -11,7 +11,6 @@ app.use(limit({
     interval: 1000 * 60
   }))
 
-app.use(helmet.noCache())           //浏览器不要缓存
 app.use(helmet.noSniff())           
 app.use(helmet.frameguard())         
 app.use(helmet.xssFilter())         
