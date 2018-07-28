@@ -1,16 +1,14 @@
-const fs = require("fs")
-const path = require("path")
 const mongo = require("mongodb")
-const assert = require("assert")
+const logs = global.logs("db")
 
-const config = require("../../config")
+const config = include("./config")
 
-const server = require("../head")
-const me = server.modules.db
+const server = global.server
 
+const me = server.get("db")
 const data = me.data
 
-me.start = async function()
+me.start = async function ()
 {
     const connect_str = `mongodb://${config.db.host}:${config.db.port}`
 
@@ -20,17 +18,17 @@ me.start = async function()
 
         data.db = client.db(config.db.db)
 
-        console.log(`connect ${connect_str}:${config.db.db} ok`)
+        logs.debug(`connect ${connect_str}:${config.db.db} ok`)
     }
-    catch(err)
+    catch (err)
     {
-        console.log(err)
+        logs.debug(err)
 
         return false
     }
 }
 
-me.load = async(name,cond,fields)=>
+me.load = async (name, cond, fields) =>
 {
     try
     {
@@ -52,66 +50,66 @@ me.load = async(name,cond,fields)=>
 
         return ret
     }
-    catch(err)
+    catch (err)
     {
-        console.log(err)
+        logs.debug(err)
     }
 }
 
-me.upsert = async(name,cond,db_data)=>
+me.upsert = async (name, cond, db_data) =>
 {
     try
     {
         const col = data.db.collection(name)
 
-        const r = await col.updateOne(cond, {$set: db_data}, {upsert: true})
-    
+        const r = await col.updateOne(cond, { $set: db_data }, { upsert: true })
+
         //assert.equal(1, r.upsertedCount)
     }
-    catch(err)
+    catch (err)
     {
-        console.log(err);
+        logs.debug(err);
     }
 }
 
-me.index = async(name,field)=>
+me.index = async (name, field) =>
 {
     try
     {
         const col = data.db.collection(name)
 
-        const r = await col.createIndex(field,{unique : true})
+        const r = await col.createIndex(field, { unique: true })
     }
-    catch(err)
+    catch (err)
     {
-        console.log(err)
+        logs.debug(err)
     }
 }
 
-me.remove = async(name,cond)=>
+me.remove = async (name, cond) =>
 {
     try
     {
         const col = data.db.collection(name)
 
-        const r = await col.deleteOne(cond)    
+        const r = await col.deleteOne(cond)
     }
-    catch(err)
+    catch (err)
     {
-        console.log(err)
+        logs.debug(err)
     }
 }
 
-me.remove_many = async(name,cond)=>
+me.remove_many = async (name, cond) =>
 {
     try
     {
         const col = data.db.collection(name)
 
-        const r = await col.deleteMany(cond)    
+        const r = await col.deleteMany(cond)
     }
-    catch(err)
+    catch (err)
     {
-        console.log(err)
+        logs.debug(err)
     }
 }

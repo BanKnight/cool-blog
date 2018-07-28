@@ -1,29 +1,28 @@
-const config = require("../../config")
+const config = include("./config")
 
-const server = require("../head")
-const assert = require('assert')
+const server = global.server
 
-const me = server.modules.users
+const me = server.get("users")
 const data = me.data
 
-me.start = function()
+me.start = function ()
 {
     data[1] = {
-        name:config.user.name
+        name: config.user.name
     }
 }
 
-me.get = function(id)
+me.get = function (id)
 {
     return data[id]
 }
 
-me.set = function(id,val)
+me.set = function (id, val)
 {
     data[id] = val
 }
 
-me.destroy = function(id)
+me.destroy = function (id)
 {
     delete data[id]
 }

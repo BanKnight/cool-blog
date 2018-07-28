@@ -1,14 +1,19 @@
-'use strict';
+require("./kernel/utils")
 
-require("./kernel")
+let server = global.server = include("./kernel/zeus")
 
-const server = require("./server")
+require("./server")
 
 async function start()
 {
-    if(await server.start() == false)
+    if (await server.init() == false)
     {
-        console.log("start server error")
+        console.error("init server error")
+    }
+
+    if (await server.start() == false)
+    {
+        console.error("start server error")
     }
 }
 
@@ -17,5 +22,5 @@ start()
 
 
 
- 
+
 

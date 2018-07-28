@@ -1,10 +1,10 @@
-const server = require("../head")
-const assert = require('assert')
+const logs = global.logs("cache")
+const server = global.server
 
-const me = server.modules.cache
+const me = server.get("cache")
 const data = me.data
 
-me.get_node_from_path = function(path)
+me.get_node_from_path = function (path)
 {
     path = path.substr(1)
     const array = path.split('/')
@@ -12,15 +12,16 @@ me.get_node_from_path = function(path)
     let parent = data
     let curr = data
 
-    array.forEach(element => {
-        if(element.length > 0)
+    array.forEach(element =>
+    {
+        if (element.length > 0)
         {
             parent = curr
             curr = parent.children[element]
 
-            if(curr == null)
+            if (curr == null)
             {
-                curr = {children:{}}
+                curr = { children: {} }
                 parent.children[element] = curr
             }
         }
@@ -29,35 +30,35 @@ me.get_node_from_path = function(path)
     return curr
 }
 
-me.get = function(path)
+me.get = function (path)
 {
     const curr = me.get_node_from_path(path)
 
     return curr
 }
 
-me.set = function(path,val)
+me.set = function (path, val)
 {
     assert(path)
     assert(val)
 
     const curr = me.get_node_from_path(path)
 
-    curr.real = val    
+    curr.real = val
 }
 
-me.unset = function(path)
+me.unset = function (path)
 {
-    console.log(`cache unset:${path}`)
+    logs.debug(`cache unset:${path}`)
 
     const curr = me.get_node_from_path(path)
 
     curr.real = null
 }
 
-me.unset_under = function(path)
+me.unset_under = function (path)
 {
-    console.log(`cache unset under:${path}`)
+    logs.debug(`cache unset under:${path}`)
 
     const curr = me.get_node_from_path(path)
 

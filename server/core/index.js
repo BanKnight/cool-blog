@@ -1,37 +1,44 @@
-const path = require("path")
 
-const config = require("../../config")
-const server = require("../head")
+const logs = global.logs("core")
 
-const app = server.app
+const config = include("./config")
+const server = assert(global.server)
+
 const routers = server.routers
 
-server.start = async()=>
+server.start = async () =>
 {
     let ret = await server.start_modules()
 
-    if(ret == false)
+    if (ret == false)
     {
         return false
     }
 
     server.start_routers()
 
-    app.listen(config.port)
+    server.app.listen(config.port)
 
-    console.log(`listening at ${config.port}`)
+    logs.debug(`listening at ${config.port}`)
 
     return true
 }
 
+server.start_routers = function ()
+{
+    server.app
+        .use(server.routers.routes())
+        .use(server.routers.allowedMethods())
+}
+
 server.on_log = async (ctx, next) => 
 {
-    console.log(`Process ${ctx.req.method} ${ctx.req.url}...`);
-        
+    logs.debug(`Process ${ctx.req.method} ${ctx.req.url}...`);
+
     await next()
 }
 
-server.on_err = function(err)
+server.on_err = function (err)
 {
     console.error(err)
 }

@@ -1,18 +1,18 @@
-const server = require("../head")
-const app = server.app
-const routers = server.routers
+const Koa = require("koa")
+const Router = require("koa-router")
+
+let server = global.server
+
+server.app = new Koa()
+server.routers = Router()
 
 //------------------------------------
 
-//require("./error")
-require("./log")
-require("./state")
 require("./default")
 
 require("./template")
 require("./static")
 
-require("./body_parser")
 require("./home")
 require("./posts")
 require("./comments")
@@ -20,6 +20,3 @@ require("./comments")
 require("./admin")
 require("./debug")
 //------------------------------------
-app
-    .use(routers.routes())
-    .use(routers.allowedMethods());

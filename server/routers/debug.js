@@ -1,34 +1,30 @@
-const config = require("../../config")
-
 const login_checker = require("./login_checker")
+const logs = global.logs("debug")
 
-const server = require("../head")
+const server = global.server
 
-const app = server.app
 const routers = server.routers
-const modules = server.modules
-const md_debug = modules.debug
 
 const cmds = {}
 
 // get 
 //example:get modules.basic.data.xx
-cmds.get = function(arg)
+cmds.get = function (arg)
 {
     return eval(`(${arg})`)
 }
 
-cmds.set = function()
+cmds.set = function ()
 {
 
 }
 
-routers.get("/admin/debug",login_checker.must,async(ctx,next)=>
+routers.get("/admin/debug", login_checker.must, async (ctx, next) =>
 {
     await ctx.render("admin.debug")
 })
 
-routers.post("/admin/debug",login_checker.must,async(ctx,next)=>
+routers.post("/admin/debug", login_checker.must, async (ctx, next) =>
 {
     let params = ctx.request.body
     let cmd = params.cmd
@@ -39,25 +35,25 @@ routers.post("/admin/debug",login_checker.must,async(ctx,next)=>
     try
     {
         let cmd_func = cmds[cmd]
-        if(cmd_func == null)
+        if (cmd_func == null)
         {
-            ctx.body = {result:false,reason:"no such cmd"}
+            ctx.body = { result: false, reason: "no such cmd" }
             return
         }
-    
+
         let result = cmd_func(arg)
-        if(result)
+        if (result)
         {
             console.dir(result)
-            ctx.body = {result:true,data : result}
-            return 
+            ctx.body = { result: true, data: result }
+            return
         }
-    
-        ctx.body = {result:true,data:"no result"}
+
+        ctx.body = { result: true, data: "no result" }
     }
-    catch(err)
+    catch (err)
     {
-        console.log(err)
-        ctx.body = {result:false,reason:err}
+        logs.debug(err)
+        ctx.body = { result: false, reason: err }
     }
 })
