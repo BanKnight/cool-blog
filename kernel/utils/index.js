@@ -1,2 +1,0 @@
-require("./functions")
-require("./logs")
