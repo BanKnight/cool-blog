@@ -1,32 +1,81 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <el-container id="app" direction="vertical" class="full">
+    <el-container>
+      <nav-head />
+    </el-container>
     <router-view />
-  </div>
+  </el-container>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import NavHead from "@/components/NavHead";
+
+export default {
+  components: { NavHead }
+};
+</script>
+
+<style >
+body,
+html {
+  width: 100%;
+  height: 100%;
+
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24292e;
 }
 
-#nav {
-  padding: 30px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.full {
+  width: 100%;
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  padding-right: 8px;
+}
+
+.el-scrollbar .el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+
+.el-scrollbar__view {
+  height: 100%;
+}
+.el-tree {
+  height: 100%;
+  background-color: transparent;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+.el-tree > .el-tree-node {
+  width: 100%;
+  display: inline-block;
 }
 </style>
