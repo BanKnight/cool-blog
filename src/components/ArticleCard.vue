@@ -1,7 +1,9 @@
 <template>
   <el-container class="full-width article-card" direction="vertical">
-    <h3>{{value.title}}</h3>
-    <p>{{value.desc}}</p>
+    <router-link :to="'/article/' + value.id">
+      <h3>{{value.title}}</h3>
+    </router-link>
+    <p>{{value.created}}</p>
   </el-container>
 </template>
 

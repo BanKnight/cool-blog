@@ -1,8 +1,6 @@
 <template>
   <el-container id="app" direction="vertical" class="full">
-    <el-container>
-      <nav-head />
-    </el-container>
+    <nav-head />
     <router-view />
   </el-container>
 </template>
@@ -11,11 +9,17 @@
 import NavHead from "@/components/NavHead";
 
 export default {
-  components: { NavHead }
+  components: { NavHead },
+  async created() {
+    console.log("app created before");
+    await this.$store.dispatch("load_config");
+  }
 };
 </script>
 
 <style >
+@import "~github-markdown-css";
+
 body,
 html {
   width: 100%;

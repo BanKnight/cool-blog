@@ -3,13 +3,14 @@
     <el-menu
       class="head"
       :default-active="activeIndex"
+      :router="true"
       mode="horizontal"
       @select="handleSelect"
       background-color="#fafbfc"
       text-color="#24292e"
       active-text-color="#e36209"
     >
-      <el-menu-item index="1">首页</el-menu-item>
+      <el-menu-item index="/">首页</el-menu-item>
     </el-menu>
   </el-row>
 </template>
@@ -18,7 +19,7 @@
 export default {
   data() {
     return {
-      activeIndex: "1"
+      activeIndex: "/"
     };
   },
   methods: {

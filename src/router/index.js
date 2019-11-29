@@ -11,6 +11,13 @@ const routes = [
     name: "home",
     component: Home
   },
+  {
+    path: "/article/:id",
+    name: "article",
+    component: () =>
+      import(/* webpackChunkName: "article" */ "../views/Article.vue")
+  }
+  ,
 ];
 
 const router = new VueRouter({
@@ -27,7 +34,7 @@ router.beforeEach(function (to, from, next)
 
 })
 
-router.afterEach(transition =>
+router.afterEach(() =>
 {
   NProgress.done();
 });
