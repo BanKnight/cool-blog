@@ -1,8 +1,15 @@
 <template>
-  <el-container>
-    <el-main v-if="article">
-      <h1>{{article.title}}</h1>
-      <div class="markdown-body" v-html="article.bodyHTML" />
+  <el-container direction="vertical">
+    <el-collapse-transition>
+      <el-card v-if="article">
+        <div slot="header">
+          <h1>{{article.title}}</h1>
+        </div>
+        <div class="markdown-body" v-html="article.bodyHTML" />
+      </el-card>
+    </el-collapse-transition>
+
+    <el-main v-loading="loading">
       <div ref="comment" />
     </el-main>
   </el-container>
@@ -14,7 +21,8 @@
 export default {
   data() {
     return {
-      article: null
+      article: null,
+      loading: false
     };
   },
   async mounted() {
@@ -28,23 +36,20 @@ export default {
 
     id = parseInt(id);
 
+    this.loading = true;
+
     const gh = this.$github;
+
+    gh.attach_comment(this.$refs.comment, id);
 
     const resp = await gh.get_issue(parseInt(id));
 
-    console.log(resp);
-
     this.article = resp.repository.issue;
 
-    this.$nextTick(() => {
-      gh.attach_comment(this.$refs.comment, this.article.number);
-    });
+    this.$title(this.article.title);
+
+    this.loading = false;
   }
 };
 </script>
 
-<style scoped>
-.utterances {
-  max-width: 100%;
-}
-</style>

@@ -1,7 +1,9 @@
 <template>
   <el-container id="app" direction="vertical" class="full">
     <nav-head />
-    <router-view />
+    <transition name="el-fade-in">
+      <router-view />
+    </transition>
   </el-container>
 </template>
 
