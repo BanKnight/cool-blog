@@ -11,7 +11,6 @@
     "axios": "^0.19.0",
     "core-js": "^3.3.2",
     "element-ui": "^2.4.5",
-    "github-api": "^3.3.0",
     "github-markdown-css": "^3.0.1",
     "graphql-request": "^1.8.2",
     "highlight.js": "^9.16.2",

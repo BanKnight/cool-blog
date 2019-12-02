@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import marked from "marked";
+// import marked from "marked";
 
 export default {
   data() {
@@ -16,7 +16,7 @@ export default {
       article: null
     };
   },
-  mounted() {
+  async mounted() {
     let params = this.$route.params;
 
     let id = params.id;
@@ -25,16 +25,13 @@ export default {
       return;
     }
 
-    const issues = this.issues();
+    const gh = this.$github;
 
-    issues.getIssue(id).then(({ data }) => {
-      this.article = {
-        id,
-        title: data.title,
-        desc: "this is desc",
-        body: data.body
-      };
-    });
+    const resp = await gh.get_issue(parseInt(id));
+
+    console.log(resp);
+
+    this.article = resp.repository.issue;
   },
   computed: {
     html() {
@@ -42,7 +39,7 @@ export default {
         return;
       }
 
-      return marked(this.article.body);
+      return this.article.bodyHTML;
     }
   }
 };

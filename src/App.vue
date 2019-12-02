@@ -9,7 +9,7 @@
 import NavHead from "@/components/NavHead";
 
 export default {
-  components: { NavHead },
+  components: { NavHead }
 };
 </script>
 
