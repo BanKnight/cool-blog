@@ -13,6 +13,7 @@
     "element-ui": "^2.4.5",
     "github-api": "^3.3.0",
     "github-markdown-css": "^3.0.1",
+    "graphql-request": "^1.8.2",
     "highlight.js": "^9.16.2",
     "marked": "^0.7.0",
     "normalize.css": "^8.0.1",

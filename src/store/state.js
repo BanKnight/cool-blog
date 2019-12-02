@@ -1,3 +1,2 @@
 export default {
-    config: null,
 }

@@ -10,10 +10,6 @@ import NavHead from "@/components/NavHead";
 
 export default {
   components: { NavHead },
-  async created() {
-    console.log("app created before");
-    await this.$store.dispatch("load_config");
-  }
 };
 </script>
 
