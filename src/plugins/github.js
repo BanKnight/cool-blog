@@ -13,12 +13,13 @@ const client = new GraphQLClient(endpoint, {
 });
 
 const github = {}
+const env = process.env.NODE_ENV
 
 github.get_issues = function (after)
 {
-    const query = `query($owner:String!,$name:String!,$first:Int!,$after:String){
+    const query = `query($owner:String!,$name:String!,$first:Int!,$after:String,$env:String!){
         repository(owner: $owner, name: $name) {
-          issues(orderBy: {field: CREATED_AT, direction: DESC}, labels: ["development"], states: [OPEN],first:$first,after:$after) {
+          issues(orderBy: {field: CREATED_AT, direction: DESC}, labels: [$env], states: [OPEN],first:$first,after:$after) {
             nodes {
               title
               createdAt
@@ -46,7 +47,8 @@ github.get_issues = function (after)
         owner: config.user,
         name: config.repo,
         first: 10,
-        after: after
+        after: after,
+        env
     }
 
     return client.request(query, variables)
