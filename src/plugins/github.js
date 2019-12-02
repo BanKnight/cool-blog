@@ -2,7 +2,7 @@ import Vue from "vue"
 import config from "../../config"
 import { GraphQLClient } from 'graphql-request';
 
-const endpoint = 'https://api.github.com/graphql';
+const endpoint = 'https://cors-anywhere.herokuapp.com/https://api.github.com/graphql';
 
 const client = new GraphQLClient(endpoint, {
     headers: {

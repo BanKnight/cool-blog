@@ -1,21 +1,19 @@
 <template>
   <el-container class="full">
-    <el-aside width="200px">
-      <nav-left />
-    </el-aside>
     <el-main v-loading="loading">
-      <article-card v-for="article in articles" :key="article.number" :value="article" />
+      <el-collapse-transition v-for="article in articles" :key="article.number">
+        <article-card :value="article" />
+      </el-collapse-transition>
     </el-main>
   </el-container>
 </template>
 
 <script>
-import NavLeft from "@/components/NavLeft";
 import ArticleCard from "@/components/ArticleCard";
 
 export default {
   name: "home",
-  components: { NavLeft, ArticleCard },
+  components: { ArticleCard },
   data() {
     return {
       articles: [],
