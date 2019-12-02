@@ -2,7 +2,8 @@
   <el-container>
     <el-main v-if="article">
       <h1>{{article.title}}</h1>
-      <div class="markdown-body" v-html="html" />
+      <div class="markdown-body" v-html="article.bodyHTML" />
+      <div ref="comment" />
     </el-main>
   </el-container>
 </template>
@@ -25,6 +26,8 @@ export default {
       return;
     }
 
+    id = parseInt(id);
+
     const gh = this.$github;
 
     const resp = await gh.get_issue(parseInt(id));
@@ -32,15 +35,16 @@ export default {
     console.log(resp);
 
     this.article = resp.repository.issue;
-  },
-  computed: {
-    html() {
-      if (this.article == null) {
-        return;
-      }
 
-      return this.article.bodyHTML;
-    }
+    this.$nextTick(() => {
+      gh.attach_comment(this.$refs.comment, this.article.number);
+    });
   }
 };
 </script>
+
+<style scoped>
+.utterances {
+  max-width: 100%;
+}
+</style>

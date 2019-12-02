@@ -83,5 +83,20 @@ github.get_issue = function (number)
     return client.request(query, variables)
 }
 
+github.attach_comment = function (el, id)
+{
+    const utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-number', id);
+    utterances.setAttribute('theme', 'github-light');
+    utterances.setAttribute('repo', `${config.user}/${config.repo}`);
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+
+    // 找到对应容器插入，我这里用的是 comment
+    el.appendChild(utterances);
+}
+
 
 Vue.prototype.$github = github

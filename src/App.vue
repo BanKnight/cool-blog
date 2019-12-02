@@ -15,6 +15,7 @@ export default {
 
 <style >
 @import "~github-markdown-css";
+@import "~nprogress/nprogress.css";
 
 body,
 html {
