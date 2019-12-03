@@ -13,7 +13,7 @@ const client = new GraphQLClient(endpoint, {
 });
 
 const github = {}
-const labels = [process.env.NODE_ENV]
+const labels = [process.env.NODE_ENV == "development" ? process.env.NODE_ENV : "cool"]
 
 github.get_issues = function (after)
 {

@@ -13,7 +13,9 @@
       </el-table-column>
     </el-table>
 
-    <el-button v-if="more" type="text" :loading="loading" @click="search">加载更多</el-button>
+    <el-row type="flex" justify="center" align="middle">
+      <el-button v-if="more" type="text" :loading="loading" @click="search">加载更多</el-button>
+    </el-row>
   </el-card>
 </template>
 

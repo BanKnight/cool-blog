@@ -12,8 +12,9 @@
         </template>
       </el-table-column>
     </el-table>
-
-    <el-button v-if="more" type="text" :loading="loading" @click="get_data">加载更多</el-button>
+    <el-row type="flex" justify="center" align="middle">
+      <el-button v-if="more" type="text" :loading="loading" @click="get_data">加载更多</el-button>
+    </el-row>
   </el-card>
 </template>
 
@@ -46,6 +47,8 @@ export default {
       for (let issue of issues) {
         this.articles.push(issue);
       }
+
+      console.log(this.articles);
 
       this.loading = false;
       this.last = resp.repository.issues.pageInfo.endCursor;

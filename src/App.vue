@@ -3,7 +3,7 @@
     <nav-head />
     <transition name="el-fade-in">
       <el-row type="flex" justify="center">
-        <div style="max-width:768px;width:100%;margin-top:20px;min-height:100%">
+        <div style="max-width:768px;width:100%;margin-top:10px;min-height:100%">
           <router-view />
         </div>
       </el-row>
@@ -33,6 +33,7 @@ html {
   font-size: 14px;
   line-height: 1.5;
   color: #24292e;
+  background-color: #f4f5f5;
 }
 
 h1,
