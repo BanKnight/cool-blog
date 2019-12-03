@@ -13,18 +13,18 @@ const client = new GraphQLClient(endpoint, {
 });
 
 const github = {}
-const env = process.env.NODE_ENV
+const labels = [process.env.NODE_ENV]
 
 github.get_issues = function (after)
 {
-    const query = `query($owner:String!,$name:String!,$first:Int!,$after:String,$env:String!){
+    const query = `query($owner:String!,$name:String!,$first:Int!,$after:String,$labels:[String!]){
         repository(owner: $owner, name: $name) {
-          issues(orderBy: {field: CREATED_AT, direction: DESC}, labels: [$env], states: [OPEN],first:$first,after:$after) {
+          issues(orderBy: {field: CREATED_AT, direction: DESC}, labels: $labels, states: [OPEN],first:$first,after:$after) {
             nodes {
               title
               createdAt
               number
-              labels(first:10)
+              labels(first:$first)
               {
                 nodes{
                   name
@@ -46,9 +46,9 @@ github.get_issues = function (after)
     const variables = {
         owner: config.user,
         name: config.repo,
-        first: 10,
+        first: config.page,
         after: after,
-        env
+        labels
     }
 
     return client.request(query, variables)
@@ -56,14 +56,14 @@ github.get_issues = function (after)
 
 github.get_issue = function (number)
 {
-    const query = `query ($owner: String!, $name: String!,$number:Int!) {
+    const query = `query ($owner: String!, $name: String!,$first:Int!,$number:Int!) {
         repository(owner: $owner, name: $name) {
           issue(number: $number) {
             title
             createdAt
             number
             bodyHTML
-            labels(first: 10) {
+            labels(first: $first) {
               nodes {
                 name
               }
@@ -80,8 +80,72 @@ github.get_issue = function (number)
         owner: config.user,
         name: config.repo,
         number: number,
+        first: config.page,
     }
 
+    return client.request(query, variables)
+}
+/**
+ * 参考链接：https://help.github.com/en/github/searching-for-information-on-github/searching-on-github
+ * return:
+ * {
+  "data": {
+    "search": {
+      "issueCount": 1,
+      "pageInfo": {
+        "endCursor": "Y3Vyc29yOjE=",
+        "hasNextPage": false
+      },
+      "nodes": [
+        {
+          "title": "test-issues",
+          "bodyText": "this is a test\nthis is a test3\nlet help = 3",
+          "number": 2
+        }
+      ]
+    }
+  }
+}
+ */
+github.search = function (keyword, last)
+{
+    const label_filters = []
+
+    for (let one of labels)
+    {
+        label_filters.push(`label:${one}`)
+    }
+
+    const query = `query($first:Int!,$after:String){
+        search(query: "${keyword} repo:${config.user}/${config.repo} ${label_filters.join(" ")} author:${config.user}", type: ISSUE,first: $first, after: $after) {
+          issueCount
+          pageInfo {
+            endCursor
+            hasNextPage
+          }
+          nodes {
+            ... on Issue {
+              title
+              createdAt
+              number
+              labels(first: $first) {
+                nodes {
+                  name
+                }
+              }
+              comments(first: null) {
+                totalCount
+              }
+            }
+          }
+          
+        }
+      }`
+
+    const variables = {
+        first: config.page,
+        after: last,
+    }
     return client.request(query, variables)
 }
 

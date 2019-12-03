@@ -1,14 +1,11 @@
 <template>
   <el-main direction="vertical" v-loading="loading">
-    <el-collapse-transition>
-      <el-card v-if="article">
-        <div slot="header">
-          <h1>{{article.title}}</h1>
-        </div>
-        <div class="markdown-body" v-html="article.bodyHTML" />
-      </el-card>
-    </el-collapse-transition>
-
+    <el-card v-if="article">
+      <div slot="header">
+        <h1>{{article.title}}</h1>
+      </div>
+      <div class="markdown-body" v-html="article.bodyHTML" />
+    </el-card>
     <div ref="comment" />
   </el-main>
 </template>

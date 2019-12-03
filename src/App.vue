@@ -2,7 +2,11 @@
   <el-container id="app" direction="vertical" class="full">
     <nav-head />
     <transition name="el-fade-in">
-      <router-view />
+      <el-row type="flex" justify="center">
+        <div style="max-width:768px;width:100%;margin-top:20px;min-height:100%">
+          <router-view />
+        </div>
+      </el-row>
     </transition>
   </el-container>
 </template>
