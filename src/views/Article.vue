@@ -1,5 +1,5 @@
 <template>
-  <el-main direction="vertical" v-loading="loading">
+  <el-container direction="vertical" v-loading="loading">
     <el-card v-if="article" shadow="never">
       <div slot="header">
         <h1>{{article.title}}</h1>
@@ -15,7 +15,7 @@
       <div class="markdown-body" v-html="article.bodyHTML" />
     </el-card>
     <div ref="comment" />
-  </el-main>
+  </el-container>
 </template>
 
 <script>

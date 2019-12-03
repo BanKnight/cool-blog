@@ -1,21 +1,23 @@
 <template>
-  <el-container id="app" direction="vertical" class="full">
+  <el-container id="app" direction="vertical" class="full-width">
     <nav-head />
     <transition name="el-fade-in">
-      <el-row type="flex" justify="center">
-        <div style="max-width:768px;width:100%;margin-top:10px;min-height:100%">
+      <el-row type="flex" justify="center" class="full">
+        <div style="max-width:768px;width:100%">
           <router-view />
         </div>
       </el-row>
     </transition>
+    <nav-footer></nav-footer>
   </el-container>
 </template>
 
 <script>
 import NavHead from "@/components/NavHead";
+import NavFooter from "@/components/NavFooter";
 
 export default {
-  components: { NavHead }
+  components: { NavHead, NavFooter }
 };
 </script>
 

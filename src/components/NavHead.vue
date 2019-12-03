@@ -6,11 +6,12 @@
       justify="space-between"
       align="middle"
     >
-      <span>
-        <router-link to="/" class="el-link el-link--default" style="color:#eef4fc">
+      <router-link to="/" class="el-link el-link--default" style="color:#eef4fc">
+        <el-container direction="vertical">
           <h3>Cool Blog</h3>
-        </router-link>
-      </span>
+          <h6 style="color:#c0c4cc">酷酷地来，总要留点东西</h6>
+        </el-container>
+      </router-link>
 
       <el-row type="flex" justify="end" align="middle">
         <el-menu
