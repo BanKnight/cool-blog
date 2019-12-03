@@ -149,7 +149,7 @@ github.search = function (keyword, last)
     return client.request(query, variables)
 }
 
-github.attach_comment = function (el, id)
+github.attach_comment = async function (el, id)
 {
     const utterances = document.createElement('script');
     utterances.type = 'text/javascript';
@@ -162,6 +162,32 @@ github.attach_comment = function (el, id)
 
     // 找到对应容器插入，我这里用的是 comment
     el.appendChild(utterances);
+
+    return new Promise((res =>
+    {
+        utterances.onload = res
+    }))
+}
+
+github.attach_board = async function (el)
+{
+    const utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-term', '【留言板】');
+    utterances.setAttribute('label', 'board');
+    utterances.setAttribute('theme', 'github-light');
+    utterances.setAttribute('repo', `${config.user}/${config.repo}`);
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+
+    // 找到对应容器插入，我这里用的是 comment
+    el.appendChild(utterances);
+
+    return new Promise((res =>
+    {
+        utterances.onload = res
+    }))
 }
 
 

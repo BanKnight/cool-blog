@@ -43,7 +43,7 @@ export default {
 
     const gh = this.$github;
 
-    gh.attach_comment(this.$refs.comment, id);
+    const is_comment_ok = gh.attach_comment(this.$refs.comment, id);
 
     const resp = await gh.get_issue(parseInt(id));
 
@@ -52,6 +52,8 @@ export default {
     this.$title(this.article.title);
 
     this.loading = false;
+
+    await is_comment_ok;
   }
 };
 </script>

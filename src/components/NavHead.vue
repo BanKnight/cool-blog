@@ -14,14 +14,14 @@
 
       <el-row type="flex" justify="end" align="middle">
         <el-menu
-          :default-active="activeIndex"
+          :default-active="current"
           :router="true"
           mode="horizontal"
           background-color="transparent"
           text-color="#bebfc1"
           active-text-color="white"
         >
-          <el-menu-item index="/message">留言</el-menu-item>
+          <el-menu-item v-for="route in routes" :key="route.name" :index="route.path">{{route.nav}}</el-menu-item>
         </el-menu>
 
         <el-input
@@ -40,16 +40,29 @@
 </template>
 
 <script>
+import { routes } from "@/router";
+
 export default {
   data() {
     return {
-      activeIndex: "",
-      keyword: ""
+      keyword: "",
+      routes: []
     };
   },
   mounted() {
+    this.routes = routes.filter(one => {
+      return one.nav != null;
+    });
+
+    console.log(this.routes);
+
     if (this.$route.name == "search") {
       this.keyword = this.$route.query.keyword;
+    }
+  },
+  computed: {
+    current() {
+      return this.$route.path;
     }
   },
   methods: {

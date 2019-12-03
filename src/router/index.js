@@ -9,7 +9,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
   },
   {
     path: "/article/:id",
@@ -22,6 +22,13 @@ const routes = [
     name: "search",
     component: () =>
       import(/* webpackChunkName: "article" */ "../views/Search.vue")
+  },
+  {
+    path: "/board",
+    name: "board",
+    nav: "留言",
+    component: () =>
+      import(/* webpackChunkName: "article" */ "../views/Board.vue")
   },
 ];
 
@@ -45,3 +52,5 @@ router.afterEach(() =>
 });
 
 export default router;
+
+export { routes }

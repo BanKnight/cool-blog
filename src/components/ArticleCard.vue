@@ -16,7 +16,9 @@
       >{{ label.name }}</el-tag>
     </span>
 
-    <p>{{value.createdAt}}</p>
+    <p>
+      <i class="el-icon-time">{{time}}</i>
+    </p>
   </el-container>
 </template>
 
