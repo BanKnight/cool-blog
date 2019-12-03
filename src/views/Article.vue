@@ -1,5 +1,5 @@
 <template>
-  <el-container direction="vertical">
+  <el-main direction="vertical" v-loading="loading">
     <el-collapse-transition>
       <el-card v-if="article">
         <div slot="header">
@@ -9,10 +9,8 @@
       </el-card>
     </el-collapse-transition>
 
-    <el-main v-loading="loading">
-      <div ref="comment" />
-    </el-main>
-  </el-container>
+    <div ref="comment" />
+  </el-main>
 </template>
 
 <script>

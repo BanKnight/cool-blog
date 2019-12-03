@@ -1,8 +1,10 @@
 <template>
   <el-container class="full-width article-card" direction="vertical">
-    <router-link :to="'/article/' + value.number">
-      <h3>{{value.title}}</h3>
-    </router-link>
+    <span>
+      <router-link :to="'/article/' + value.number" class="el-link el-link--default">
+        <h3>{{value.title}}</h3>
+      </router-link>
+    </span>
     <p>{{value.createdAt}}</p>
   </el-container>
 </template>
@@ -18,7 +20,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .article-card {
   padding-top: 24px;
   padding-bottom: 24px;
