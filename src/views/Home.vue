@@ -1,5 +1,5 @@
 <template>
-  <el-card class="full-width" shadow="never">
+  <el-card class="full" shadow="never">
     <el-table
       :data="articles"
       v-loading="loading && more == false"

@@ -1,11 +1,11 @@
 <template>
-  <el-container id="app" direction="vertical" class="full-width">
+  <el-container id="app" direction="vertical" class="full">
     <nav-head />
     <transition name="el-fade-in">
       <el-row type="flex" justify="center" class="full">
-        <div style="max-width:768px;width:100%">
+        <el-container style="max-width:768px" class="full">
           <router-view />
-        </div>
+        </el-container>
       </el-row>
     </transition>
     <nav-footer></nav-footer>
@@ -56,6 +56,7 @@ p {
 .full {
   width: 100%;
   height: 100%;
+  min-height: 100%;
 }
 
 .full-width {
